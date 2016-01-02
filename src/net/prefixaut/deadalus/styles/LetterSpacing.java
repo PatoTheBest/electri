@@ -1,0 +1,63 @@
+package net.prefixaut.deadalus.styles;
+
+import java.io.Serializable;
+
+import net.prefixaut.deadalus.Size;
+
+public class LetterSpacing implements Style, Animatable<LetterSpacing>, Serializable {
+	
+	private static final long serialVersionUID = 0x1000200020000016L;
+	private byte defID = 0;
+	private Size space = new Size(0);
+	public static final LetterSpacing NORMAL = new LetterSpacing((byte) 1);
+	public static final LetterSpacing INHERIT = new LetterSpacing((byte) Byte.MAX_VALUE);
+	
+	private LetterSpacing(byte defID) {
+		this.defID = defID;
+	}
+	
+	public LetterSpacing(double space) {
+		this.space = new Size(space);
+	}
+	
+	public LetterSpacing(Size space) {
+		this.space = space;
+	}
+	
+	public Size getSpace() {
+		return space;
+	}
+	
+	public void setSpace(Size space) {
+		this.space = space;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + defID;
+		result = prime * result + ( (space == null) ? 0 : space.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		LetterSpacing other = (LetterSpacing) obj;
+		if (defID != other.defID) return false;
+		if (space == null) {
+			if (other.space != null) return false;
+		} else if (!space.equals(other.space)) return false;
+		return true;
+	}
+	
+	@Override
+	public Runnable animate(LetterSpacing to, Animation an) {
+		return () -> {
+			this.getSpace().animate(to.getSpace(), an).run();
+		};
+	}
+}
