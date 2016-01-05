@@ -11,4 +11,9 @@ public enum BackgroundBlendMode implements Style {
 	SATURATION,
 	COLOR,
 	LUMINOSITY;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

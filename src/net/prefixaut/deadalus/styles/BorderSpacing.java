@@ -43,27 +43,27 @@ public class BorderSpacing implements Style, Animatable<BorderSpacing>, Serializ
 		this.vertical = vertical;
 	}
 	
-	public Size getHotizontal() {
+	public Size horizontal() {
 		return horizontal;
 	}
 	
-	public void setHorizontal(double horizontal) {
-		this.setHorizontal(new Size(horizontal));
+	public void horizontal(double horizontal) {
+		this.horizontal(new Size(horizontal));
 	}
 	
-	public void setHorizontal(Size hotizontal) {
+	public void horizontal(Size hotizontal) {
 		this.horizontal = hotizontal;
 	}
 	
-	public Size getVertical() {
+	public Size vertical() {
 		return vertical;
 	}
 	
-	public void setVertical(double vertical) {
-		this.setVertical(new Size(vertical));
+	public void vertical(double vertical) {
+		this.vertical(new Size(vertical));
 	}
 	
-	public void setVertical(Size vertical) {
+	public void vertical(Size vertical) {
 		this.vertical = vertical;
 	}
 	
@@ -106,8 +106,13 @@ public class BorderSpacing implements Style, Animatable<BorderSpacing>, Serializ
 	@Override
 	public Runnable animate(BorderSpacing to, Animation an) {
 		return () -> {
-			this.getHotizontal().animate(to.getHotizontal(), an).run();
-			this.getVertical().animate(to.getVertical(), an).run();
+			this.horizontal().animate(to.horizontal(), an).run();
+			this.vertical().animate(to.vertical(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return horizontal + " " + vertical;
 	}
 }

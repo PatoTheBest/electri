@@ -25,6 +25,18 @@ public class TextIndent implements Style, Serializable {
 		this.indent = indent;
 	}
 	
+	public Size indent() {
+		return this.indent;
+	}
+	
+	public void indent(Size indent) {
+		this.indent = indent;
+	}
+	
+	public void indent(double indent) {
+		this.indent(new Size(indent));
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,5 +57,10 @@ public class TextIndent implements Style, Serializable {
 			if (other.indent != null) return false;
 		} else if (!indent.equals(other.indent)) return false;
 		return true;
+	}
+
+	@Override
+	public String css() {
+		return this.indent().toString();
 	}
 }

@@ -1,38 +1,47 @@
 package net.prefixaut.deadalus;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import net.prefixaut.deadalus.util.CSS3;
 import net.prefixaut.deadalus.util.StyleState;
-import net.prefixaut.prelib.IDGenerator;
 import net.prefixaut.prelib.SyncArrayList;
 import net.prefixaut.prelib.SyncPairMap;
-import net.prefixaut.prelib.Syncbase;
 import net.prefixaut.prelib.util.Filter;
 import net.prefixaut.prelib.xml.Element;
 
 /**
- * Very basic Object which can be displayed via XPIL.
+ * Very basic Object which can be displayed via PILL.
  * 
  * Every Object which extends this Component requires one Constructor which takes a String as an ID for that Item.
  * 
  * @author PreFiXAUT
- *
+ *		
  */
-public abstract class Component extends Syncbase<Component> implements Element<Component> {
+public abstract class Component implements Element<Component>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200010000001L;
-	
-	private static final IDGenerator idgen = new IDGenerator("Component[####-####-####-####]", IDGenerator.HEXADECIMAL);
-	private final String permID;
+	/**
+	 * XML Name (<%name% ...>), which is used for parsing
+	 */
+	protected String name;
+	/**
+	 * Parent of this Component
+	 */
+	protected Component parent = null;
 	/**
 	 * CSS-ID of this Component.
 	 */
-	protected String cssID;
+	protected String id;
 	/**
 	 * List of all CSS-Classes this Component has.
 	 */
-	protected SyncArrayList<String> cssClasses = new SyncArrayList<>();
+	protected SyncArrayList<String> classes = new SyncArrayList<>();
 	/**
 	 * Attributes of this Component, for example src="/file.txt" would be mapped as {"src", "file.txt"}
 	 */
@@ -60,247 +69,208 @@ public abstract class Component extends Syncbase<Component> implements Element<C
 	 */
 	protected StyleState styleState = CSS3.States.NORMAL;
 	/**
-	 * Determines the Width and Height of this Component.
+	 * Determines the (Min. & Max.) Width and Height of this Component.
 	 */
-	protected Size width = Size.AUTO, height = Size.AUTO;
-	protected Size minWidth = Size.AUTO, minHeight = Size.AUTO;
-	protected Size maxWidth = Size.AUTO, maxHeight = Size.AUTO;
-	
-	/**
-	 * Creates a new Component.
-	 * 
-	 * @param id
-	 *            Id of this Component used internally as Identifier and as the CSS-ID.
-	 * @see Component#id
-	 */
-	public Component(String cssID) {
-		this.permID = idgen.getAndNext();
-		this.cssID = cssID;
+	protected Size width = Size.AUTO, height = Size.AUTO,
+			minWidth = Size.AUTO, minHeight = Size.AUTO,
+			maxWidth = Size.AUTO, maxHeight = Size.AUTO;
+			
+	public Component(String name) {
+		this.name = name;
 	}
 	
-	public final Size getWidth() {
+	public Component(String name, Component parent) {
+		this.name = name;
+		this.parent = parent;
+	}
+	
+	public final String name() {
+		return this.name;
+	}
+	
+	public final void name(String name) {
+		this.name = name;
+	}
+	
+	public Component parent() {
+		return this.parent;
+	}
+	
+	public void parent(Component parent) {
+		this.parent.children.remove(this);
+		this.parent = parent;
+	}
+	
+	public final Size width() {
 		return this.width;
 	}
 	
-	public final void setWidth(Size width) {
+	public final void width(Size width) {
 		this.width = width;
 	}
 	
-	public final Size getHeight() {
+	public final Size height() {
 		return this.height;
 	}
 	
-	public final void setHeight(Size height) {
+	public final void height(Size height) {
 		this.height = height;
 	}
 	
-	public final Size getMaxWidth() {
+	public final Size maxWidth() {
 		return this.maxWidth;
 	}
 	
-	public final void setMaxWidth(Size maxWidth) {
+	public final void maxWidth(Size maxWidth) {
 		this.maxWidth = maxWidth;
 	}
 	
-	public final Size getMaxHeight() {
+	public final Size maxHeight() {
 		return this.maxHeight;
 	}
 	
-	public final void setMaxHeight(Size maxHeight) {
+	public final void maxHeight(Size maxHeight) {
 		this.maxHeight = maxHeight;
 	}
 	
-	public final Size getMinWidth() {
+	public final Size minWidth() {
 		return this.minWidth;
 	}
 	
-	public final void setMinWidth(Size minWidth) {
+	public final void minWidth(Size minWidth) {
 		this.minWidth = minWidth;
 	}
 	
-	public final Size getMinHeight() {
+	public final Size minHeight() {
 		return this.minHeight;
 	}
 	
-	public final void setMinHeight(Size minHeight) {
+	public final void minHeight(Size minHeight) {
 		this.minHeight = minHeight;
 	}
 	
 	/**
-	 * Gets the ID of this Component.
-	 * 
-	 * @see Component#id
+	 * Gets the CSS-ID of this Component.
 	 */
-	public final String getCssID() {
-		return this.cssID;
+	public final String id() {
+		return this.id;
 	}
 	
 	/**
-	 * Sets the ID of this Component.
-	 * 
-	 * @see Component#id
+	 * Sets the CSS-ID of this Component.
 	 */
-	public final void setCssID(String cssID) {
-		this.cssID = cssID;
+	public final void id(String cssID) {
+		this.id = cssID;
 	}
 	
 	/**
-	 * Adds a CSS-Class to this Component.
-	 * 
-	 * @see Component#cssClasses
+	 * Adds CSS-Classes to this Component.
 	 */
-	public final boolean addCssClass(String cssClass) {
-		return this.cssClasses.add(cssClass);
+	public final boolean addClass(String... cssClasses) {
+		return this.classes.addAll(cssClasses);
 	}
 	
 	/**
-	 * Adds multiple CSS-Classes to this Component.
-	 * 
-	 * @see Component#cssClasses
+	 * Adds CSS-Classes to this Component.
 	 */
-	public final boolean addCssClasses(String... cssClasses) {
-		return this.cssClasses.addAll(cssClasses);
-	}
-	
-	/**
-	 * Adds multiple CSS-Classes to this Component.
-	 * 
-	 * @see Component#cssClasses
-	 */
-	public final boolean addCssClasses(Collection<String> cssClasses) {
-		return this.cssClasses.addAll(cssClasses);
+	public final boolean addClass(Collection<String> cssClasses) {
+		return this.classes.addAll(cssClasses);
 	}
 	
 	/**
 	 * Gets all CSS-Classes of this Component.
-	 * 
-	 * @see Component#cssClasses
 	 */
-	public final SyncArrayList<String> getCssClasses() {
-		return this.cssClasses.getCopy();
+	public final SyncArrayList<String> classes() {
+		return this.classes.getCopy();
 	}
 	
 	/**
-	 * Removes a CSS-Class from this Component.
-	 * 
-	 * @see Component#cssClasses
+	 * Removes CSS-Classes from this Component.
 	 */
-	public final boolean removeCssClass(String cssClass) {
-		return this.cssClasses.remove(cssClass);
+	public final boolean removeClass(String... cssClasses) {
+		return this.classes.removeAll(cssClasses);
 	}
 	
 	/**
-	 * Removes multiple CSS-Classes from this Component.
-	 * 
-	 * @see Component#cssClasses
+	 * Removes CSS-Classes from this Component.
 	 */
-	public final boolean removeCssClasses(String... cssClasses) {
-		return this.cssClasses.removeAll(cssClasses);
-	}
-	
-	/**
-	 * Removes multiple CSS-Classes from this Component.
-	 * 
-	 * @see Component#cssClasses
-	 */
-	public final boolean removeCssClasses(Collection<String> cssClasses) {
-		return this.cssClasses.removeAll(cssClasses);
+	public final boolean removeClass(Collection<String> cssClasses) {
+		return this.classes.removeAll(cssClasses);
 	}
 	
 	/**
 	 * Gets all Children of this Component.
-	 * 
-	 * @see Component#children
 	 */
-	public final SyncArrayList<Component> getChildren() {
+	public final SyncArrayList<Component> children() {
 		return this.children.getCopy();
 	}
 	
-	/**
-	 * Adds a Child to this Component.
-	 * 
-	 * @see Component#children
-	 */
-	@Override
-	public final boolean addChild(Component child) {
-		if (!this.allowChildren) return false;
-		if (!this.childrenFilter.allow(child)) return false;
-		else return this.children.add(child);
+	public final boolean children(Component... children) {
+		this.children.clear();
+		return this.children.addAll(children);
+	}
+	
+	public final boolean children(Collection<Component> children) {
+		this.children.clear();
+		return this.children.addAll(children);
 	}
 	
 	/**
-	 * Adds multiple Children to this Component.
-	 * 
-	 * @see Component#children
+	 * Adds Children to this Component.
 	 */
-	@Override
 	public final boolean addChildren(Component... children) {
-		boolean flag = true;
-		for (int i = 0; i < children.length; i++)
-			if (!this.addChild(children[i])) flag = false;
-		return flag;
+		return this.addChildren(Arrays.asList(children));
 	}
 	
 	/**
-	 * Adds multiple Children to this Component.
-	 * 
-	 * @see Component#children
+	 * Adds Children to this Component.
 	 */
-	@Override
 	public final boolean addChildren(Collection<Component> children) {
-		boolean flag = true;
-		for (Component c : children)
-			if (!this.addChild(c)) flag = false;
-		return flag;
+		if (!this.allowChildren) return false;
+		List<Component> c = new ArrayList<>();
+		for (Component cp : children) {
+			if (this.childrenFilter.allow(cp)) c.add(cp);
+		}
+		return this.children.addAll(c);
 	}
 	
 	/**
-	 * Removes a Child from this Component.
-	 * 
-	 * @see Component#children
+	 * Removes Children from this Component.
 	 */
-	@Override
-	public final boolean removeChild(Component child) {
-		return this.children.remove(child);
-	}
-	
-	/**
-	 * Removes multiple Children from this Component.
-	 * 
-	 * @see Component#children
-	 */
-	@Override
 	public final boolean removeChildren(Component... children) {
 		return this.children.removeAll(children);
 	}
 	
 	/**
 	 * Removes multiple Children from this Component.
-	 * 
-	 * @see Component#children
 	 */
-	@Override
 	public final boolean removeChildren(Collection<Component> children) {
 		return this.children.removeAll(children);
 	}
 	
 	@Override
-	public final SyncPairMap<String, Object> getAttributes() {
+	public final SyncPairMap<String, Object> attributes() {
 		return this.attributes.getCopy();
 	}
 	
 	@Override
-	public final boolean setAttribute(String name, Object value) {
+	public final boolean attributes(String name, Object value) {
 		this.attributes.put(name, value);
 		return true;
 	}
 	
-	@Override
-	public final Object getAttributeValue(String attr) {
+	public final boolean attributes(Map<String, Object> map) {
+		for (Entry<String, Object> e : map.entrySet()) {
+			this.attributes.put(e.getKey(), e.getValue());	
+		}
+		return true;
+	}
+	
+	public final Object attribute(String attr) {
 		return this.attributes.get(attr);
 	}
 	
-	protected final void setAllowChildren(boolean allowChildren) {
+	protected final void allowChildren(boolean allowChildren) {
 		this.allowChildren = allowChildren;
 	}
 	
@@ -308,35 +278,11 @@ public abstract class Component extends Syncbase<Component> implements Element<C
 		return this.allowChildren;
 	}
 	
-	protected final void setChildrenFilter(Filter<Component> filter) {
+	protected final void childrenFilter(Filter<Component> filter) {
 		this.childrenFilter = filter;
 	}
 	
-	public final Filter<Component> getChildrenFilter() {
+	public final Filter<Component> childrenFilter() {
 		return this.childrenFilter;
-	}
-	
-	protected final String getPermanentID() {
-		return this.permID;
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ( (permID == null) ? 0 : permID.hashCode());
-		return result;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		Component other = (Component) obj;
-		if (permID == null) {
-			if (other.permID != null) return false;
-		} else if (!permID.equals(other.permID)) return false;
-		return true;
 	}
 }

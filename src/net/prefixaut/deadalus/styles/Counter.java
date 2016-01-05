@@ -33,4 +33,10 @@ public final class Counter implements Style {
 	public static double getCounters(String id) {
 		return Counter.counters.get(id);
 	}
+
+	@Override
+	public String css() {
+		// TODO:
+		return null;
+	}
 }

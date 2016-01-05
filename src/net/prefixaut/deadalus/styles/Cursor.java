@@ -78,11 +78,11 @@ public class Cursor implements Style {
 		this.image = new BufferedImage(path);
 	}
 	
-	public Image getImage() {
+	public Image image() {
 		return image;
 	}
 	
-	public void setImage(Image image) {
+	public void image(Image image) {
 		this.image = image;
 	}
 	
@@ -112,5 +112,11 @@ public class Cursor implements Style {
 		} else if (!image.equals(other.image))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String css() {
+		// TODO:
+		return null;
 	}
 }

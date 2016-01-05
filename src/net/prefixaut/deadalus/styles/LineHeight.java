@@ -24,11 +24,11 @@ public class LineHeight implements Style, Animatable<LineHeight>, Serializable {
 		this.height = height;
 	}
 	
-	public Size getHeight() {
+	public Size height() {
 		return height;
 	}
 	
-	public void setHeight(Size height) {
+	public void height(Size height) {
 		this.height = height;
 	}
 	
@@ -57,7 +57,12 @@ public class LineHeight implements Style, Animatable<LineHeight>, Serializable {
 	@Override
 	public Runnable animate(LineHeight to, Animation an) {
 		return () -> {
-			this.getHeight().animate(to.getHeight(), an).run();
+			this.height().animate(to.height(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.height().toString();
 	}
 }

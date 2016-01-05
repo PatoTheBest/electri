@@ -41,19 +41,19 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 		this.unit = unit;
 	}
 	
-	public void setSize(double size) {
+	public void size(double size) {
 		this.size = size;
 	}
 	
-	public double getSize() {
+	public double size() {
 		return this.size;
 	}
 	
-	public void setUnit(SizeUnit unit) {
+	public void unit(SizeUnit unit) {
 		this.unit = unit;
 	}
 	
-	public SizeUnit getUnit() {
+	public SizeUnit unit() {
 		return this.unit;
 	}
 	
@@ -90,26 +90,26 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 	
 	@Override
 	public int compareTo(Size compare) {
-		if (this.getUnit().convertToPixel(this.getSize()) > compare.getUnit().convertToPixel(compare.getSize())) return 1;
-		if (this.getUnit().convertToPixel(this.getSize()) == compare.getUnit().convertToPixel(compare.getSize())) return 0;
+		if (this.unit().convertToPixel(this.size()) > compare.unit().convertToPixel(compare.size())) return 1;
+		if (this.unit().convertToPixel(this.size()) == compare.unit().convertToPixel(compare.size())) return 0;
 		return -1;
 	}
 	
 	public final double asPixel() {
-		return this.getUnit().convertToPixel(this.getSize());
+		return this.unit().convertToPixel(this.size());
 	}
 	
 	@Override
 	public Runnable animate(Size to, Animation an) {
 		return () -> {
-			double max = an.getDuration() / an.getFPS();
-			double difS = (this.getUnit().convertToPixel(this.getSize()) - to.getUnit().convertToPixel(to.getSize())) / max;
-			for (int i = 0; i < an.getIteration(); i++) {
+			double max = an.duration() / an.fps();
+			double difS = (this.unit().convertToPixel(this.size()) - to.unit().convertToPixel(to.size())) / max;
+			for (int i = 0; i < an.iterations(); i++) {
 				long buffer = 0;
 				for (long frame = 0; frame < max; frame++) {
 					long start = System.currentTimeMillis();
 					long timeout = 1;
-					AnimationDirection d = an.getDirection();
+					AnimationDirection d = an.direction();
 					if (d == AnimationDirection.INHERIT) {
 						// TODO: Handle INHERIT!
 						d = AnimationDirection.NORMAL;
@@ -122,11 +122,11 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 					}
 					// Getting timeout
 					if (d == AnimationDirection.NORMAL) {
-						timeout = an.getTiming().getTiming(an.getFPS(), an.getDuration(), frame);
+						timeout = an.timing().timing(an.fps(), an.duration(), frame);
 					} else {
-						timeout = an.getTiming().getTiming(an.getFPS(), an.getDuration(), (long) max - frame);
+						timeout = an.timing().timing(an.fps(), an.duration(), (long) max - frame);
 					}
-					this.setSize(this.getSize() + (this.getUnit().getKey() * difS));
+					this.size(this.size() + (this.unit().getKey() * difS));
 					long end = System.currentTimeMillis();
 					try {
 						// Calculating buffer in case the frame took too long, so we reduce the next-frame duration the amount it was too much so they are even again.
@@ -140,9 +140,9 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 						e.printStackTrace();
 					}
 				}
-				this.setSize(this.getUnit().getKey() * to.getUnit().convertToPixel(to.getSize()));
+				this.size(this.unit().getKey() * to.unit().convertToPixel(to.size()));
 				try {
-					this.wait(an.getDelay());
+					this.wait(an.delay());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

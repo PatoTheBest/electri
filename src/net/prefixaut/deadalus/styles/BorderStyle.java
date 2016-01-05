@@ -12,4 +12,9 @@ public enum BorderStyle implements Style {
 	INSET,
 	OUSET,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

@@ -113,83 +113,83 @@ public class Animation implements Style, Serializable {
 		this.fps = fps;
 	}
 	
-	public String getName() {
+	public String name() {
 		return name;
 	}
 	
-	public void setName(String name) {
+	public void name(String name) {
 		this.name = name;
 	}
 	
-	public long getDuration() {
+	public long duration() {
 		return duration;
 	}
 	
-	public void setDuration(long duration) {
+	public void duration(long duration) {
 		this.duration = duration;
 	}
 	
-	public long getDelay() {
+	public long delay() {
 		return delay;
 	}
 	
-	public void setDelay(long delay) {
+	public void delay(long delay) {
 		this.delay = delay;
 	}
 	
-	public AnimationTiming getTiming() {
+	public AnimationTiming timing() {
 		return timing;
 	}
 	
-	public void setTiming(AnimationTiming timing) {
+	public void timing(AnimationTiming timing) {
 		this.timing = timing;
 	}
 	
-	public String getTimingData() {
+	public String timingData() {
 		return timingData;
 	}
 	
-	public void setTimingData(String timingData) {
+	public void timingData(String timingData) {
 		this.timingData = timingData;
 	}
 	
-	public int getIteration() {
+	public int iterations() {
 		return iteration;
 	}
 	
-	public void setIteration(int iteration) {
+	public void iterations(int iteration) {
 		this.iteration = iteration;
 	}
 	
-	public AnimationDirection getDirection() {
+	public AnimationDirection direction() {
 		return direction;
 	}
 	
-	public void setDirection(AnimationDirection direction) {
+	public void direction(AnimationDirection direction) {
 		this.direction = direction;
 	}
 	
-	public AnimationFillMode getMode() {
+	public AnimationFillMode mode() {
 		return mode;
 	}
 	
-	public void setMode(AnimationFillMode mode) {
+	public void mode(AnimationFillMode mode) {
 		this.mode = mode;
 	}
 	
-	public AnimationPlayState getState() {
+	public AnimationPlayState state() {
 		return state;
 	}
 	
-	public void setState(AnimationPlayState state) {
+	public void state(AnimationPlayState state) {
 		this.state = state;
 	}
 	
-	public double getFPS() {
+	public double fps() {
 		return fps;
 	}
 	
-	public void setFPS(double fps) {
+	public void fps(double fps) {
 		this.fps = fps;
 	}
 	
@@ -237,5 +237,13 @@ public class Animation implements Style, Serializable {
 			if (other.timingData != null) return false;
 		} else if (!timingData.equals(other.timingData)) return false;
 		return true;
+	}
+
+	@Override
+	public String css() {
+		return String.format("%s %d %s %d %d %s %s %s", this.name(), this.duration(), this.timing(), this.delay(), this.iterations(), 
+				this.direction().name().toLowerCase().replaceAll("_", "-"),
+				this.mode().name().toLowerCase().replaceAll("_", "-"),
+				this.state().name().toLowerCase().replaceAll("_", "-"));
 	}
 }

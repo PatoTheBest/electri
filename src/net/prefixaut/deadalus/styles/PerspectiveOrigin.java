@@ -19,27 +19,32 @@ public class PerspectiveOrigin implements Style, Animatable<PerspectiveOrigin>, 
 		this.y = y;
 	}
 	
-	public Size getX() {
+	public Size x() {
 		return x;
 	}
 	
-	public void setX(Size x) {
+	public void x(Size x) {
 		this.x = x;
 	}
 	
-	public Size getY() {
+	public Size y() {
 		return y;
 	}
 	
-	public void setY(Size y) {
+	public void y(Size y) {
 		this.y = y;
 	}
 	
 	@Override
 	public Runnable animate(PerspectiveOrigin to, Animation an) {
 		return () -> {
-			this.getX().animate(to.getX(), an).run();
-			this.getY().animate(to.getY(), an).run();
+			this.x().animate(to.x(), an).run();
+			this.y().animate(to.y(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.x() + " " + this.y();
 	}
 }

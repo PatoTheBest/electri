@@ -59,4 +59,10 @@ public class FontFamily implements Style, Serializable {
 	public void setType(FontType type) {
 		this.type = type;
 	}
+
+	@Override
+	public String css() {
+		// TODO:
+		return null;
+	}
 }

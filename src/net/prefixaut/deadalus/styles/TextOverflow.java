@@ -19,11 +19,11 @@ public class TextOverflow implements Style, Serializable {
 		this.clippedText = str;
 	}
 	
-	public String getClippedText() {
+	public String clippedText() {
 		return clippedText;
 	}
 	
-	public void setClippedText(String clippedText) {
+	public void clippedText(String clippedText) {
 		this.clippedText = clippedText;
 	}
 	
@@ -47,5 +47,10 @@ public class TextOverflow implements Style, Serializable {
 		} else if (!clippedText.equals(other.clippedText)) return false;
 		if (defID != other.defID) return false;
 		return true;
+	}
+
+	@Override
+	public String css() {
+		return this.clippedText();
 	}
 }

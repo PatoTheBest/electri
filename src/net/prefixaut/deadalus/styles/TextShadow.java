@@ -42,45 +42,54 @@ public class TextShadow implements Style, Animatable<TextShadow>, Serializable {
 		this.color = color;
 	}
 	
-	public Size getLength() {
+	public Size length() {
 		return length;
 	}
 	
-	public void setLength(Size length) {
+	public void length(Size length) {
 		this.length = length;
 	}
 	
-	public Size getWidth() {
+	public void length(double length) {
+		this.length(new Size(length));
+	}
+	
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
-	public Size getBlur() {
+	public Size blur() {
 		return blur;
 	}
 	
-	public void setBlur(Size blur) {
+	public void blur(Size blur) {
 		this.blur = blur;
 	}
 	
-	public Color getColor() {
+	public Color color() {
 		return color;
 	}
 	
-	public void setColor(Color color) {
+	public void color(Color color) {
 		this.color = color;
 	}
 	
 	@Override
 	public Runnable animate(TextShadow to, Animation an) {
 		return () -> {
-			this.getBlur().animate(to.getBlur(), an).run();
-			this.getColor().animate(to.getColor(), an).run();
-			this.getLength().animate(to.getLength(), an).run();
-			this.getWidth().animate(to.getWidth(), an).run();
+			this.blur().animate(to.blur(), an).run();
+			this.color().animate(to.color(), an).run();
+			this.length().animate(to.length(), an).run();
+			this.width().animate(to.width(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.length() + " " + this.width() + " " + this.blur() + " " + this.color();
 	}
 }

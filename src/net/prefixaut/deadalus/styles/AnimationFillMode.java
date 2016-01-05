@@ -6,4 +6,9 @@ public enum AnimationFillMode implements Style {
 	BACKWARDS,
 	BOTH,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

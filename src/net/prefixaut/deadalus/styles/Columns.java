@@ -35,23 +35,23 @@ public class Columns implements Style, Animatable<Columns>, Serializable {
 		this.count = count;
 	}
 	
-	public Size getWidth() {
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(double width) {
+	public void width(double width) {
 		this.width = new Size(width);
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
-	public int getCount() {
+	public int count() {
 		return count;
 	}
 	
-	public void setCount(int count) {
+	public void count(int count) {
 		this.count = count;
 	}
 	
@@ -82,7 +82,12 @@ public class Columns implements Style, Animatable<Columns>, Serializable {
 	@Override
 	public Runnable animate(Columns to, Animation an) {
 		return () -> {
-			this.getWidth().animate(to.getWidth(), an).run();
+			this.width().animate(to.width(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.width() + " " + this.count();
 	}
 }

@@ -29,14 +29,14 @@ public abstract class AnimateableRoundableShapeAddition<T extends Animatable> ex
 	@Override
 	public Runnable animate(AnimateableRoundableShapeAddition<T> to, Animation an) {
 		return () -> {
-			this.getTop().animate(to.getTop(), an).run();
-			this.getRight().animate(to.getRight(), an).run();
-			this.getBottom().animate(to.getBottom(), an).run();
-			this.getLeft().animate(to.getLeft(), an).run();
-			this.getTopRightRadius().animate(to.getTopRightRadius(), an).run();
-			this.getBottomRightRadius().animate(to.getBottomRightRadius(), an).run();
-			this.getBottomLeftRadius().animate(to.getBottomLeftRadius(), an).run();
-			this.getTopLeftRadius().animate(to.getTopLeftRadius(), an).run();
+			this.top().animate(to.top(), an).run();
+			this.right().animate(to.right(), an).run();
+			this.bottom().animate(to.bottom(), an).run();
+			this.left().animate(to.left(), an).run();
+			this.topRight().animate(to.topRight(), an).run();
+			this.bottomRight().animate(to.bottomRight(), an).run();
+			this.bottomLeft().animate(to.bottomLeft(), an).run();
+			this.topLeft().animate(to.topLeft(), an).run();
 		};
 	}
 }

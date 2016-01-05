@@ -156,27 +156,27 @@ public class Outline implements Style, Animatable<Outline>, Serializable {
 		this.style = style;
 	}
 	
-	public Color getColor() {
+	public Color color() {
 		return color;
 	}
 	
-	public void setColor(Color color) {
+	public void color(Color color) {
 		this.color = color;
 	}
 	
-	public OutlineStyle getStyle() {
+	public OutlineStyle style() {
 		return style;
 	}
 	
-	public void setStyle(OutlineStyle style) {
+	public void style(OutlineStyle style) {
 		this.style = style;
 	}
 	
-	public Size getWidth() {
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
@@ -211,8 +211,13 @@ public class Outline implements Style, Animatable<Outline>, Serializable {
 	@Override
 	public Runnable animate(Outline to, Animation an) {
 		return () -> {
-			this.getColor().animate(to.getColor(), an).run();
-			this.getWidth().animate(to.getWidth(), an).run();
+			this.color().animate(to.color(), an).run();
+			this.width().animate(to.width(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.color() + " " + this.style() + " " + this.width();
 	}
 }

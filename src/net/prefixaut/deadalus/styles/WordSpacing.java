@@ -24,15 +24,15 @@ public class WordSpacing implements Style, Animatable<WordSpacing>, Serializable
 		this.space = space;
 	}
 	
-	public Size getSpace() {
+	public Size space() {
 		return space;
 	}
 	
-	public void setSpace(double space) {
+	public void space(double space) {
 		this.space = new Size(space);
 	}
 	
-	public void setSpace(Size space) {
+	public void space(Size space) {
 		this.space = space;
 	}
 	
@@ -61,7 +61,12 @@ public class WordSpacing implements Style, Animatable<WordSpacing>, Serializable
 	@Override
 	public Runnable animate(WordSpacing to, Animation an) {
 		return () -> {
-			this.getSpace().animate(to.getSpace(), an).run();
+			this.space().animate(to.space(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.space().toString();
 	}
 }

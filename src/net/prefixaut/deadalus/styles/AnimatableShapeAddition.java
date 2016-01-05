@@ -27,10 +27,10 @@ public abstract class AnimatableShapeAddition<T extends Animatable<T>> extends S
 	@Override
 	public Runnable animate(AnimatableShapeAddition<T> to, Animation an) {
 		return () -> {
-			this.getTop().animate(to.getTop(), an).run();
-			this.getRight().animate(to.getRight(), an).run();
-			this.getBottom().animate(to.getBottom(), an).run();
-			this.getLeft().animate(to.getLeft(), an).run();
+			this.top().animate(to.top(), an).run();
+			this.right().animate(to.right(), an).run();
+			this.bottom().animate(to.bottom(), an).run();
+			this.left().animate(to.left(), an).run();
 		};
 	}
 }

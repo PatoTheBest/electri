@@ -66,4 +66,10 @@ public class Quotes implements Style, Serializable {
 		} else if (!quotes.equals(other.quotes)) return false;
 		return true;
 	}
+
+	@Override
+	public String css() {
+		// TODO:
+		return null;
+	}
 }

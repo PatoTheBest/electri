@@ -19,6 +19,14 @@ public class Opacity implements Style, Animatable<Opacity>, Serializable {
 		this.opacity.setValue(opacity);
 	}
 	
+	public double opacity() {
+		return opacity.getValue();
+	}
+	
+	public void opacity(double opacity) {
+		this.opacity.setValue(opacity);;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,25 +49,17 @@ public class Opacity implements Style, Animatable<Opacity>, Serializable {
 		return true;
 	}
 	
-	public double getOpacity() {
-		return opacity.getValue();
-	}
-	
-	public void setOpacity(double opacity) {
-		this.opacity.setValue(opacity);;
-	}
-	
 	@Override
 	public Runnable animate(Opacity to, Animation an) {
 		return () -> {
-			double max = an.getDuration() / an.getFPS();
-			double difO = (this.getOpacity() - to.getOpacity()) / max;
-			for (int i = 0; i < an.getIteration(); i++) {
+			double max = an.duration() / an.fps();
+			double difO = (this.opacity() - to.opacity()) / max;
+			for (int i = 0; i < an.iterations(); i++) {
 				long buffer = 0;
 				for (long frame = 0; frame < max; frame++) {
 					long start = System.currentTimeMillis();
 					long timeout = 1;
-					AnimationDirection d = an.getDirection();
+					AnimationDirection d = an.direction();
 					if (d == AnimationDirection.INHERIT) {
 						// TODO: Handle INHERIT!
 						d = AnimationDirection.NORMAL;
@@ -72,11 +72,11 @@ public class Opacity implements Style, Animatable<Opacity>, Serializable {
 					}
 					// Getting timeout
 					if (d == AnimationDirection.NORMAL) {
-						timeout = an.getTiming().getTiming(an.getFPS(), an.getDuration(), frame);
+						timeout = an.timing().timing(an.fps(), an.duration(), frame);
 					} else {
-						timeout = an.getTiming().getTiming(an.getFPS(), an.getDuration(), (long) max - frame);
+						timeout = an.timing().timing(an.fps(), an.duration(), (long) max - frame);
 					}
-					this.setOpacity(this.getOpacity() + difO);
+					this.opacity(this.opacity() + difO);
 					long end = System.currentTimeMillis();
 					try {
 						// Calculating buffer in case the frame took too long, so we reduce the next-frame duration the amount it was too much so they are even again.
@@ -90,13 +90,18 @@ public class Opacity implements Style, Animatable<Opacity>, Serializable {
 						e.printStackTrace();
 					}
 				}
-				this.setOpacity(to.getOpacity());
+				this.opacity(to.opacity());
 				try {
-					this.wait(an.getDelay());
+					this.wait(an.delay());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		};
+	}
+
+	@Override
+	public String css() {
+		return "" + this.opacity();
 	}
 }

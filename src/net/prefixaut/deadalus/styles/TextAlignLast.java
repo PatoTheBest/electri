@@ -8,5 +8,10 @@ public enum TextAlignLast implements Style {
 	JUSTIFY,
 	START,
 	END,
-	INHERIT
+	INHERIT;
+
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

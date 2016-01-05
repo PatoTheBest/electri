@@ -31,15 +31,15 @@ public class VerticalAlign implements Style, Animatable<VerticalAlign>, Serializ
 		this.amount = amount;
 	}
 	
-	public Size getAmount() {
+	public Size amount() {
 		return amount;
 	}
 	
-	public void setAmount(double amount) {
+	public void amount(double amount) {
 		this.amount = new Size(amount);
 	}
 	
-	public void setAmount(Size amount) {
+	public void amount(Size amount) {
 		this.amount = amount;
 	}
 	
@@ -74,7 +74,12 @@ public class VerticalAlign implements Style, Animatable<VerticalAlign>, Serializ
 	@Override
 	public Runnable animate(VerticalAlign to, Animation an) {
 		return () -> {
-			this.getAmount().animate(to.getAmount(), an).run();
+			this.amount().animate(to.amount(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.amount().toString();
 	}
 }

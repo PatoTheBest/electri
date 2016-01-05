@@ -47,35 +47,35 @@ public abstract class ShapeAddition<T> implements Style, Serializable {
 		this.left = left;
 	}
 	
-	public T getTop() {
+	public T top() {
 		return top;
 	}
 	
-	public void setTop(T top) {
+	public void top(T top) {
 		this.top = top;
 	}
 	
-	public T getRight() {
+	public T right() {
 		return right;
 	}
 	
-	public void setRight(T right) {
+	public void right(T right) {
 		this.right = right;
 	}
 	
-	public T getBottom() {
+	public T bottom() {
 		return bottom;
 	}
 	
-	public void setBottom(T bottom) {
+	public void bottom(T bottom) {
 		this.bottom = bottom;
 	}
 	
-	public T getLeft() {
+	public T left() {
 		return left;
 	}
 	
-	public void setLeft(T left) {
+	public void left(T left) {
 		this.left = left;
 	}
 	
@@ -83,5 +83,10 @@ public abstract class ShapeAddition<T> implements Style, Serializable {
 	public String toString() {
 		return "BoxAddition {top=" + top + ", right=" + right + ", bottom="
 				+ bottom + ", left=" + left + "}";
+	}
+	
+	@Override
+	public String css() {
+		return this.top() + " " + this.right() + " " + this.bottom() + " " + this.left();
 	}
 }

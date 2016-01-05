@@ -14,9 +14,7 @@ public class ImageBorder implements SingleBorder<ImageBorder>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000014L;
 	private Image image;
-	private Size width = new Size(0), slice = new Size(0),
-			outsetTop = new Size(0), outsetRight = new Size(0),
-			outsetBottom = new Size(0), outsetLeft = new Size(0);
+	private Size width = new Size(0), slice = new Size(0), outset = new Size(0);
 	private ImageBorderRepeat repeat = ImageBorderRepeat.STRETCH;
 	
 	public ImageBorder(Image image) {
@@ -83,42 +81,7 @@ public class ImageBorder implements SingleBorder<ImageBorder>, Serializable {
 		this.image = image;
 		this.width = width;
 		this.slice = slice;
-		this.setOutset(outset);
-	}
-	
-	public ImageBorder(Image image, Size width, Size slice, Size outsetVertical, Size outsetHorizontal) {
-		this.image = image;
-		this.width = width;
-		this.slice = slice;
-		this.setOutset(outsetVertical, outsetHorizontal);
-	}
-	
-	public ImageBorder(Image image, Size width, Size slice, Size outsetTop, Size outsetHorizontal, Size outsetBottom) {
-		this.image = image;
-		this.width = width;
-		this.slice = slice;
-		this.setOutset(outsetTop, outsetHorizontal, outsetBottom);
-	}
-	
-	public ImageBorder(Image image, Size width, Size slice, Size outsetTop, Size outsetRight, Size outsetBottom, Size outsetLeft) {
-		this.image = image;
-		this.width = width;
-		this.slice = slice;
-		this.outsetTop = outsetTop;
-		this.outsetRight = outsetRight;
-		this.outsetBottom = outsetBottom;
-		this.outsetLeft = outsetLeft;
-	}
-	
-	public ImageBorder(Image image, Size width, Size slice, Size outsetTop, Size outsetRight, Size outsetBottom, Size outsetLeft, ImageBorderRepeat repeat) {
-		this.image = image;
-		this.width = width;
-		this.slice = slice;
-		this.outsetTop = outsetTop;
-		this.outsetRight = outsetRight;
-		this.outsetBottom = outsetBottom;
-		this.outsetLeft = outsetLeft;
-		this.repeat = repeat;
+		this.outset(outset);
 	}
 	
 	public ImageBorder(Image image, ImageBorderRepeat repeat) {
@@ -136,28 +99,7 @@ public class ImageBorder implements SingleBorder<ImageBorder>, Serializable {
 		this.image = image;
 		this.width = width;
 		this.repeat = repeat;
-		this.setOutset(outset);
-	}
-	
-	public ImageBorder(Image image, Size width, ImageBorderRepeat repeat, Size outsetVertical, Size outsetHorizontal) {
-		this.image = image;
-		this.width = width;
-		this.repeat = repeat;
-		this.setOutset(outsetVertical, outsetHorizontal);
-	}
-	
-	public ImageBorder(Image image, Size width, ImageBorderRepeat repeat, Size outsetTop, Size outsetHorizontal, Size outsetBottom) {
-		this.image = image;
-		this.width = width;
-		this.repeat = repeat;
-		this.setOutset(outsetTop, outsetHorizontal, outsetBottom);
-	}
-	
-	public ImageBorder(Image image, Size width, ImageBorderRepeat repeat, Size outsetTop, Size outsetRight, Size outsetBottom, Size outsetLeft) {
-		this.image = image;
-		this.width = width;
-		this.repeat = repeat;
-		this.setOutset(outsetTop, outsetRight, outsetBottom, outsetLeft);
+		this.outset(outset);
 	}
 	
 	public ImageBorder(Image image, ImageBorderRepeat repeat, Size width) {
@@ -170,131 +112,68 @@ public class ImageBorder implements SingleBorder<ImageBorder>, Serializable {
 		this.image = image;
 		this.width = width;
 		this.repeat = repeat;
-		this.setOutset(outset);
+		this.outset(outset);
 	}
 	
-	public ImageBorder(Image image, ImageBorderRepeat repeat, Size width, Size outsetVertical, Size outsetHorizontal) {
-		this.image = image;
-		this.width = width;
-		this.repeat = repeat;
-		this.setOutset(outsetVertical, outsetHorizontal);
-	}
-	
-	public ImageBorder(Image image, ImageBorderRepeat repeat, Size width, Size outsetTop, Size outsetHorizontal, Size outsetBottom) {
-		this.image = image;
-		this.width = width;
-		this.repeat = repeat;
-		this.setOutset(outsetTop, outsetHorizontal, outsetBottom);
-	}
-	
-	public ImageBorder(Image image, ImageBorderRepeat repeat, Size width, Size outsetTop, Size outsetRight, Size outsetBottom, Size outsetLeft) {
-		this.image = image;
-		this.width = width;
-		this.repeat = repeat;
-		this.setOutset(outsetTop, outsetRight, outsetBottom, outsetLeft);
-	}
-	
-	public Image getImage() {
+	public Image image() {
 		return image;
 	}
 	
-	public void setImage(Image image) {
+	public void image(Image image) {
 		this.image = image;
 	}
 	
-	public Size getSlice() {
+	public Size slice() {
 		return slice;
 	}
 	
-	public void setSlice(Size slice) {
+	public void slice(Size slice) {
 		this.slice = slice;
 	}
 	
-	public Size getWidth() {
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
-	public void setOutset(Size all) {
-		this.outsetTop = all;
-		this.outsetRight = all;
-		this.outsetBottom = all;
-		this.outsetBottom = all;
+	public Size outset() {
+		return this.outset;
 	}
 	
-	public void setOutset(Size vertical, Size horizontal) {
-		this.outsetTop = vertical;
-		this.outsetBottom = vertical;
-		this.outsetLeft = horizontal;
-		this.outsetRight = horizontal;
+	public void outset(Size outset) {
+		this.outset = outset;
 	}
 	
-	public void setOutset(Size top, Size horizontal, Size bottom) {
-		this.outsetTop = top;
-		this.outsetRight = horizontal;
-		this.outsetBottom = bottom;
-		this.outsetLeft = horizontal;
+	public void outset(double all) {
+		this.outset(new Size(all));
 	}
 	
-	public void setOutset(Size top, Size right, Size bottom, Size left) {
-		this.outsetTop = top;
-		this.outsetRight = right;
-		this.outsetBottom = bottom;
-		this.outsetLeft = left;
+	public void outsetLeft(double left) {
+		this.outset(new Size(left));
 	}
 	
-	public Size getOutsetTop() {
-		return outsetTop;
-	}
-	
-	public void setOutsetTop(Size outsetTop) {
-		this.outsetTop = outsetTop;
-	}
-	
-	public Size getOutsetRight() {
-		return outsetRight;
-	}
-	
-	public void setOutsetRight(Size outsetRight) {
-		this.outsetRight = outsetRight;
-	}
-	
-	public Size getOutsetBottom() {
-		return outsetBottom;
-	}
-	
-	public void setOutsetBottom(Size outsetBottom) {
-		this.outsetBottom = outsetBottom;
-	}
-	
-	public Size getOutsetLeft() {
-		return outsetLeft;
-	}
-	
-	public void setOutsetLeft(Size outsetLeft) {
-		this.outsetLeft = outsetLeft;
-	}
-	
-	public ImageBorderRepeat getRepeat() {
+	public ImageBorderRepeat repeat() {
 		return repeat;
 	}
 	
-	public void setRepeat(ImageBorderRepeat repeat) {
+	public void repeat(ImageBorderRepeat repeat) {
 		this.repeat = repeat;
 	}
 	
 	@Override
 	public Runnable animate(ImageBorder to, Animation an) {
 		return () -> {
-			this.getWidth().animate(to.getWidth(), an).run();
-			this.getSlice().animate(to.getSlice(), an).run();
-			this.getOutsetTop().animate(to.getOutsetTop(), an).run();
-			this.getOutsetRight().animate(to.getOutsetRight(), an).run();
-			this.getOutsetBottom().animate(to.getOutsetBottom(), an).run();
-			this.getOutsetLeft().animate(to.getOutsetLeft(), an).run();
+			this.width().animate(to.width(), an).run();
+			this.slice().animate(to.slice(), an).run();
+			this.outset().animate(to.outset(), an).run();
 		};
+	}
+	
+	@Override
+	public String css() {
+		return /* TODO: SOURCE + " " + */ this.slice() + " " + this.width() + " " + this.outset() + " " + this.repeat();
 	}
 }

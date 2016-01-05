@@ -4,5 +4,5 @@ import net.prefixaut.deadalus.Image;
 
 public interface ImageFilter extends Style, Animatable<ImageFilter> {
 	
-	public Image convert(Image image);
+	public Image applyFilterTo(Image image);
 }

@@ -113,43 +113,43 @@ public class BoxShadow implements Style, Animatable<BoxShadow>, Serializable {
 		this.color = color;
 	}
 	
-	public Size getHorizontalShadow() {
+	public Size horizontal() {
 		return horizontalShadow;
 	}
 	
-	public void setHorizontalShadow(Size horizontalShadow) {
+	public void horizontal(Size horizontalShadow) {
 		this.horizontalShadow = horizontalShadow;
 	}
 	
-	public Size getVerticalShadow() {
+	public Size vertical() {
 		return verticalShadow;
 	}
 	
-	public void setVerticalShadow(Size verticalShadow) {
+	public void vertical(Size verticalShadow) {
 		this.verticalShadow = verticalShadow;
 	}
 	
-	public Size getBlur() {
+	public Size blur() {
 		return blur;
 	}
 	
-	public void setBlur(Size blur) {
+	public void blur(Size blur) {
 		this.blur = blur;
 	}
 	
-	public Size getSpread() {
+	public Size spread() {
 		return spread;
 	}
 	
-	public void setSpread(Size spread) {
+	public void spread(Size spread) {
 		this.spread = spread;
 	}
 	
-	public Color getColor() {
+	public Color color() {
 		return color;
 	}
 	
-	public void setColor(Color color) {
+	public void color(Color color) {
 		this.color = color;
 	}
 	
@@ -211,11 +211,16 @@ public class BoxShadow implements Style, Animatable<BoxShadow>, Serializable {
 	@Override
 	public Runnable animate(BoxShadow to, Animation an) {
 		return () -> {
-			this.getBlur().animate(to.getBlur(), an).run();
-			this.getColor().animate(to.getColor(), an).run();
-			this.getHorizontalShadow().animate(to.getHorizontalShadow(), an).run();
-			this.getSpread().animate(to.getSpread(), an).run();
-			this.getVerticalShadow().animate(to.getVerticalShadow(), an).run();
+			this.blur().animate(to.blur(), an).run();
+			this.color().animate(to.color(), an).run();
+			this.horizontal().animate(to.horizontal(), an).run();
+			this.spread().animate(to.spread(), an).run();
+			this.vertical().animate(to.vertical(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.horizontal() + " " + this.vertical() + " " + this.blur() + " " + this.spread() + " " + this.color();
 	}
 }

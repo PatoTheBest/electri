@@ -60,83 +60,83 @@ public class Background implements Style, Animatable<Background>, Serializable {
 		this.repeat = repeat;
 	}
 	
-	public BackgroundPosition getPosition() {
+	public BackgroundPosition position() {
 		return position;
 	}
 	
-	public void setPosition(BackgroundPosition position) {
+	public void position(BackgroundPosition position) {
 		this.position = position;
 	}
 	
-	public BackgroundAttachment getAttachment() {
+	public BackgroundAttachment attachment() {
 		return attachment;
 	}
 	
-	public void setAttachment(BackgroundAttachment attachment) {
+	public void attachment(BackgroundAttachment attachment) {
 		this.attachment = attachment;
 	}
 	
-	public BackgroundRepeat getRepeat() {
+	public BackgroundRepeat repeat() {
 		return repeat;
 	}
 	
-	public void setRepeat(BackgroundRepeat repeat) {
+	public void repeat(BackgroundRepeat repeat) {
 		this.repeat = repeat;
 	}
 	
-	public Image getImage() {
+	public Image image() {
 		return this.image;
 	}
 	
-	public void setImage(Image image) {
+	public void image(Image image) {
 		this.image = image;
 	}
 	
-	public BackgroundClip getClip() {
+	public BackgroundClip clip() {
 		return clip;
 	}
 	
-	public void setClip(BackgroundClip clip) {
+	public void clip(BackgroundClip clip) {
 		this.clip = clip;
 	}
 	
-	public Color getColor() {
+	public Color color() {
 		return color;
 	}
 	
-	public void setColor(Color color) {
+	public void color(Color color) {
 		this.color = color;
 	}
 	
-	public BackgroundOrigin getOrigin() {
+	public BackgroundOrigin origin() {
 		return origin;
 	}
 	
-	public void setOrigin(BackgroundOrigin origin) {
+	public void origin(BackgroundOrigin origin) {
 		this.origin = origin;
 	}
 	
-	public BackgroundBlendMode getBlendMode() {
+	public BackgroundBlendMode blend() {
 		return blendMode;
 	}
 	
-	public void setBlendMode(BackgroundBlendMode blendMode) {
+	public void blend(BackgroundBlendMode blendMode) {
 		this.blendMode = blendMode;
 	}
 	
-	public Size getWidth() {
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
-	public Size getHeight() {
+	public Size height() {
 		return height;
 	}
 	
-	public void setHeight(Size height) {
+	public void height(Size height) {
 		this.height = height;
 	}
 	
@@ -191,10 +191,15 @@ public class Background implements Style, Animatable<Background>, Serializable {
 	@Override
 	public Runnable animate(Background to, Animation an) {
 		return () -> {
-			this.getPosition().animate(to.getPosition(), an).run();
-			this.getColor().animate(to.getColor(), an).run();
-			this.getWidth().animate(to.getWidth(), an).run();
-			this.getHeight().animate(to.getHeight(), an).run();
+			this.position().animate(to.position(), an).run();
+			this.color().animate(to.color(), an).run();
+			this.width().animate(to.width(), an).run();
+			this.height().animate(to.height(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return String.format("%s %s %s %s %s %s %s", this.color(), this.image(), this.position(), this.repeat(), this.origin(), this.clip(), this.attachment());
 	}
 }

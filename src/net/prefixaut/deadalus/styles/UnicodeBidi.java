@@ -5,4 +5,9 @@ public enum UnicodeBidi implements Style {
 	EMBED,
 	BIDI_OVERRIDE,
 	INHERIT;
+
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

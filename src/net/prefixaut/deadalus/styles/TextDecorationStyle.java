@@ -7,4 +7,9 @@ public enum TextDecorationStyle implements Style {
 	DASHED,
 	WAVY,
 	INHERIT;
+
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

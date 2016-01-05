@@ -48,4 +48,10 @@ public class Keyframe implements Style, Serializable {
 		if (styles == null) throw new NullPointerException();
 		this.styles = new SyncArrayList<>(styles);
 	}
+
+	@Override
+	public String css() {
+		// TODO:
+		return null;
+	}
 }

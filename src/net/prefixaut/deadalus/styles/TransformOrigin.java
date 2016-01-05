@@ -26,36 +26,53 @@ public class TransformOrigin implements Style, Animatable<TransformOrigin>, Seri
 		this.z = z;
 	}
 	
-	public Size getX() {
+	public Size x() {
 		return x;
 	}
 	
-	public void setX(Size x) {
+	public void x(Size x) {
 		this.x = x;
 	}
 	
-	public Size getY() {
+	public void x(double x) {
+		this.x(new Size(x));
+	}
+	
+	public Size y() {
 		return y;
 	}
 	
-	public void setY(Size y) {
+	public void y(Size y) {
 		this.y = y;
 	}
 	
-	public Size getZ() {
+	public void y(double y) {
+		this.y(new Size(y));
+	}
+	
+	public Size z() {
 		return z;
 	}
 	
-	public void setZ(Size z) {
+	public void z(Size z) {
 		this.z = z;
+	}
+	
+	public void z(double z) {
+		this.z(new Size(z));
 	}
 	
 	@Override
 	public Runnable animate(TransformOrigin to, Animation an) {
 		return () -> {
-			this.getX().animate(to.getX(), an).run();
-			this.getY().animate(to.getY(), an).run();
-			this.getZ().animate(to.getZ(), an).run();
+			this.x().animate(to.x(), an).run();
+			this.y().animate(to.y(), an).run();
+			this.z().animate(to.z(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.x() + " " + this.y() + " " + this.z();
 	}
 }

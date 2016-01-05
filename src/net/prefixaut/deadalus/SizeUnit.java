@@ -14,7 +14,7 @@ public interface SizeUnit {
 	public double getKey();
 	
 	public default double convertToPixel(Size amount) {
-		return this.convertToPixel(amount.getSize());
+		return this.convertToPixel(amount.size());
 	}
 	
 	public default double convertToPixel(double amount) {

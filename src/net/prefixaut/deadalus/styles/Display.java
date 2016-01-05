@@ -20,4 +20,9 @@ public enum Display implements Style {
 	TABLE_ROW,
 	INHERIT,
 	NONE;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

@@ -6,4 +6,9 @@ public enum AnimationDirection implements Style {
 	ALTERNATE,
 	ALTERNATE_REVERSE,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

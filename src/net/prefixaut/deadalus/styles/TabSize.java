@@ -57,4 +57,9 @@ public class TabSize implements Style, Serializable {
 		if (tab != other.tab) return false;
 		return true;
 	}
+
+	@Override
+	public String css() {
+		return "" + (tab > 0 ? tab * 4 : space);
+	}
 }

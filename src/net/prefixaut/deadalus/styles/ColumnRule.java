@@ -58,27 +58,27 @@ public class ColumnRule implements Style, Animatable<ColumnRule>, Serializable {
 		this.style = style;
 	}
 	
-	public Size getWidth() {
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
-	public ColumnRuleStyle getStyle() {
+	public ColumnRuleStyle style() {
 		return style;
 	}
 	
-	public void setStyle(ColumnRuleStyle style) {
+	public void style(ColumnRuleStyle style) {
 		this.style = style;
 	}
 	
-	public Color getColor() {
+	public Color color() {
 		return color;
 	}
 	
-	public void setColor(Color color) {
+	public void color(Color color) {
 		this.color = color;
 	}
 	
@@ -113,8 +113,13 @@ public class ColumnRule implements Style, Animatable<ColumnRule>, Serializable {
 	@Override
 	public Runnable animate(ColumnRule to, Animation an) {
 		return () -> {
-			this.getColor().animate(to.getColor(), an).run();
-			this.getWidth().animate(to.getWidth(), an).run();
+			this.color().animate(to.color(), an).run();
+			this.width().animate(to.width(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.width() + " " + this.style() + " " + this.color();
 	}
 }

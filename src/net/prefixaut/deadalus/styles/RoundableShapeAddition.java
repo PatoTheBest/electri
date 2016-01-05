@@ -28,204 +28,204 @@ public abstract class RoundableShapeAddition<T> extends ShapeAddition<T> {
 		super(top, right, bottom, left);
 	}
 	
-	public void setTopLeftRadius(CornerRadius radius) {
+	public void topLeft(CornerRadius radius) {
 		this.topLeft = radius;
 	}
 	
-	public void setTopLeftRadius(Size radius) {
+	public void topLeft(Size radius) {
 		this.topLeft = new CornerRadius(radius);
 	}
 	
-	public void setTopLeftRadius(double radius) {
+	public void topLeft(double radius) {
 		this.topLeft = new CornerRadius(radius);
 	}
 	
-	public void setTopLeftRadius(Size width, Size height) {
+	public void topLeft(Size width, Size height) {
 		this.topLeft = new CornerRadius(width, height);
 	}
 	
-	public void setTopLeftRadius(double width, double height) {
+	public void topLeft(double width, double height) {
 		this.topLeft = new CornerRadius(width, height);
 	}
 	
-	public CornerRadius getTopLeftRadius() {
+	public CornerRadius topLeft() {
 		return this.topLeft;
 	}
 	
-	public void setTopRightRadius(CornerRadius radius) {
+	public void topRight(CornerRadius radius) {
 		this.topRight = radius;
 	}
 	
-	public void setTopRightRadius(Size radius) {
+	public void topRight(Size radius) {
 		this.topRight = new CornerRadius(radius);
 	}
 	
-	public void setTopRightRadius(double radius) {
+	public void topRight(double radius) {
 		this.topRight = new CornerRadius(radius);
 	}
 	
-	public void setTopRightRadius(Size width, Size height) {
+	public void topRight(Size width, Size height) {
 		this.topRight = new CornerRadius(width, height);
 	}
 	
-	public void setTopRightRadius(double width, double height) {
+	public void topRight(double width, double height) {
 		this.topRight = new CornerRadius(width, height);
 	}
 	
-	public CornerRadius getTopRightRadius() {
+	public CornerRadius topRight() {
 		return this.topRight;
 	}
 	
-	public void setBottomLeftRadius(CornerRadius radius) {
+	public void bottomLeft(CornerRadius radius) {
 		this.bottomLeft = radius;
 	}
 	
-	public void setBottomLeftRadius(Size radius) {
+	public void bottomLeft(Size radius) {
 		this.bottomLeft = new CornerRadius(radius);
 	}
 	
-	public void setBottomLeftRadius(double radius) {
+	public void bottomLeft(double radius) {
 		this.bottomLeft = new CornerRadius(radius);
 	}
 	
-	public void setBottomLeftRaius(Size width, Size height) {
+	public void bottomLeft(Size width, Size height) {
 		this.bottomLeft = new CornerRadius(width, height);
 	}
 	
-	public void setBottomLeftRadius(double width, double height) {
+	public void bottomLeft(double width, double height) {
 		this.bottomLeft = new CornerRadius(width, height);
 	}
 	
-	public CornerRadius getBottomLeftRadius() {
+	public CornerRadius bottomLeft() {
 		return this.bottomLeft;
 	}
 	
-	public void setBottomRightRadius(CornerRadius radius) {
+	public void bottomRight(CornerRadius radius) {
 		this.bottomRight = radius;
 	}
 	
-	public void setBottomRightRadius(Size radius) {
+	public void bottomRight(Size radius) {
 		this.bottomRight = new CornerRadius(radius);
 	}
 	
-	public void setBottomRightRadius(double radius) {
+	public void bottomRight(double radius) {
 		this.bottomRight = new CornerRadius(radius);
 	}
 	
-	public void setBottomRightRadius(Size width, Size height) {
+	public void bottomRight(Size width, Size height) {
 		this.bottomRight = new CornerRadius(width, height);
 	}
 	
-	public void setBottomRightRadius(double width, double height) {
+	public void bottomRight(double width, double height) {
 		this.bottomRight = new CornerRadius(width, height);
 	}
 	
-	public CornerRadius getBottomRightRadius() {
+	public CornerRadius bottomRight() {
 		return this.bottomRight;
 	}
 	
-	public void setCorners(CornerRadius all) {
+	public void corners(CornerRadius all) {
 		this.topLeft = this.topRight = this.bottomLeft = this.bottomRight = all;
 	}
 	
-	public void setCorners(Size all) {
-		this.setCorners(new CornerRadius(all));
+	public void corners(Size all) {
+		this.corners(new CornerRadius(all));
 	}
 	
-	public void setCorners(double all) {
-		this.setCorners(new CornerRadius(all));
+	public void corners(double all) {
+		this.corners(new CornerRadius(all));
 	}
 	
-	public void setCorners(CornerRadius top, CornerRadius bottom) {
-		this.setTopCorners(top);
-		this.setBottomCorners(bottom);
+	public void corners(CornerRadius top, CornerRadius bottom) {
+		this.topCorners(top);
+		this.bottomCorners(bottom);
 	}
 	
-	public void setCorners(Size top, Size bottom) {
-		this.setCorners(new CornerRadius(top), new CornerRadius(bottom));
+	public void corners(Size top, Size bottom) {
+		this.corners(new CornerRadius(top), new CornerRadius(bottom));
 	}
 	
-	public void setCorners(double top, double bottom) {
-		this.setCorners(new CornerRadius(top), new CornerRadius(bottom));
+	public void corners(double top, double bottom) {
+		this.corners(new CornerRadius(top), new CornerRadius(bottom));
 	}
 	
-	public void setTopCorners(CornerRadius radius) {
+	public void topCorners(CornerRadius radius) {
 		this.topLeft = this.topRight = radius;
 	}
 	
-	public void setTopCorners(Size radius) {
-		this.setTopCorners(new CornerRadius(radius));
+	public void topCorners(Size radius) {
+		this.topCorners(new CornerRadius(radius));
 	}
 	
-	public void setTopCorners(double radius) {
-		this.setTopCorners(new CornerRadius(radius));
+	public void topCorners(double radius) {
+		this.topCorners(new CornerRadius(radius));
 	}
 	
-	public void setTopCorners(Size width, Size height) {
-		this.setTopCorners(new CornerRadius(width, height));
+	public void topCorners(Size width, Size height) {
+		this.topCorners(new CornerRadius(width, height));
 	}
 	
-	public void setTopCorners(double width, double height) {
-		this.setTopCorners(new CornerRadius(width, height));
+	public void topCorners(double width, double height) {
+		this.topCorners(new CornerRadius(width, height));
 	}
 	
-	public void setRightCorners(CornerRadius radius) {
+	public void rightCorners(CornerRadius radius) {
 		this.topRight = this.bottomRight = radius;
 	}
 	
-	public void setRightCorners(Size radius) {
-		this.setRightCorners(new CornerRadius(radius));
+	public void rightCorners(Size radius) {
+		this.rightCorners(new CornerRadius(radius));
 	}
 	
-	public void setRightCorners(double radius) {
-		this.setRightCorners(new CornerRadius(radius));
+	public void rightCorners(double radius) {
+		this.rightCorners(new CornerRadius(radius));
 	}
 	
-	public void setRightCorners(Size width, Size height) {
-		this.setRightCorners(new CornerRadius(width, height));
+	public void rightCorners(Size width, Size height) {
+		this.rightCorners(new CornerRadius(width, height));
 	}
 	
-	public void setRightCorners(double width, double height) {
-		this.setRightCorners(new CornerRadius(width, height));
+	public void rightCorners(double width, double height) {
+		this.rightCorners(new CornerRadius(width, height));
 	}
 	
-	public void setBottomCorners(CornerRadius radius) {
+	public void bottomCorners(CornerRadius radius) {
 		this.bottomLeft = this.bottomRight = radius;
 	}
 	
-	public void setBottomCorners(Size radius) {
-		this.setBottomCorners(new CornerRadius(radius));
+	public void bottomCorners(Size radius) {
+		this.bottomCorners(new CornerRadius(radius));
 	}
 	
-	public void setBottomCorners(double radius) {
-		this.setBottomCorners(new CornerRadius(radius));
+	public void bottomCorners(double radius) {
+		this.bottomCorners(new CornerRadius(radius));
 	}
 	
-	public void setBottomCorners(Size width, Size height) {
-		this.setBottomCorners(new CornerRadius(width, height));
+	public void bottomCorners(Size width, Size height) {
+		this.bottomCorners(new CornerRadius(width, height));
 	}
 	
-	public void setBottomCorners(double width, double height) {
-		this.setBottomCorners(new CornerRadius(width, height));
+	public void bottomCorners(double width, double height) {
+		this.bottomCorners(new CornerRadius(width, height));
 	}
 	
-	public void setLeftCorners(CornerRadius radius) {
+	public void leftCorners(CornerRadius radius) {
 		this.topLeft = this.bottomLeft = radius;
 	}
 	
-	public void setLeftCorners(Size radius) {
-		this.setLeftCorners(new CornerRadius(radius));
+	public void leftCorners(Size radius) {
+		this.leftCorners(new CornerRadius(radius));
 	}
 	
-	public void setLeftCorners(double radius) {
-		this.setLeftCorners(new CornerRadius(radius));
+	public void leftCorners(double radius) {
+		this.leftCorners(new CornerRadius(radius));
 	}
 	
-	public void setLeftCorners(Size width, Size height) {
-		this.setLeftCorners(new CornerRadius(width, height));
+	public void leftCorners(Size width, Size height) {
+		this.leftCorners(new CornerRadius(width, height));
 	}
 	
-	public void setLeftCorners(double width, double height) {
-		this.setLeftCorners(new CornerRadius(width, height));
+	public void leftCorners(double width, double height) {
+		this.leftCorners(new CornerRadius(width, height));
 	}
 }

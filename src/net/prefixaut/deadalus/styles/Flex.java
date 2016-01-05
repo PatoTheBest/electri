@@ -43,31 +43,31 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 		this.basis = basis;
 	}
 	
-	public int getGrow() {
+	public int grow() {
 		return grow;
 	}
 	
-	public void setGrow(int grow) {
+	public void grow(int grow) {
 		this.grow = grow;
 	}
 	
-	public int getShrink() {
+	public int shrink() {
 		return shrink;
 	}
 	
-	public void setShrink(int shrink) {
+	public void shrink(int shrink) {
 		this.shrink = shrink;
 	}
 	
-	public Size getBasis() {
+	public Size basis() {
 		return basis;
 	}
 	
-	public void setBasis(double basis) {
+	public void basis(double basis) {
 		this.basis = new Size(basis);
 	}
 	
-	public void setBasis(Size basis) {
+	public void basis(Size basis) {
 		this.basis = basis;
 	}
 	
@@ -108,16 +108,16 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 	@Override
 	public Runnable animate(Flex to, Animation an) {
 		return () -> {
-			double max = an.getDuration() / an.getFPS();
-			double difB = (this.getBasis().asPixel() - to.getBasis().asPixel()) / max,
-					difS = (this.getShrink() - to.getShrink()) / max,
-					difG = (this.getGrow() - to.getGrow()) / max;
-			for (int i = 0; i < an.getIteration(); i++) {
+			double max = an.duration() / an.fps();
+			double difB = (this.basis().asPixel() - to.basis().asPixel()) / max,
+					difS = (this.shrink() - to.shrink()) / max,
+					difG = (this.grow() - to.grow()) / max;
+			for (int i = 0; i < an.iterations(); i++) {
 				long buffer = 0;
 				for (long frame = 0; frame < max; frame++) {
 					long start = System.currentTimeMillis();
 					long timeout = 1;
-					AnimationDirection d = an.getDirection();
+					AnimationDirection d = an.direction();
 					if (d == AnimationDirection.INHERIT) {
 						// TODO: Handle INHERIT!
 						d = AnimationDirection.NORMAL;
@@ -130,13 +130,13 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 					}
 					// Getting timeout
 					if (d == AnimationDirection.NORMAL) {
-						timeout = an.getTiming().getTiming(an.getFPS(), an.getDuration(), frame);
+						timeout = an.timing().timing(an.fps(), an.duration(), frame);
 					} else {
-						timeout = an.getTiming().getTiming(an.getFPS(), an.getDuration(), (long) max - frame);
+						timeout = an.timing().timing(an.fps(), an.duration(), (long) max - frame);
 					}
-					this.setBasis(this.getBasis().getUnit().getKey() * (this.getBasis().asPixel() + difB));
-					this.setShrink((int) (this.getShrink() + difS)); 
-					this.setGrow((int) (this.getGrow() + difG));
+					this.basis(this.basis().unit().getKey() * (this.basis().asPixel() + difB));
+					this.shrink((int) (this.shrink() + difS)); 
+					this.grow((int) (this.grow() + difG));
 					long end = System.currentTimeMillis();
 					try {
 						// Calculating buffer in case the frame took too long, so we reduce the next-frame duration the amount it was too much so they are even again.
@@ -150,15 +150,20 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 						e.printStackTrace();
 					}
 				}
-				this.setBasis(to.getBasis());
-				this.setGrow(to.getGrow());
-				this.setShrink(to.getShrink());
+				this.basis(to.basis());
+				this.grow(to.grow());
+				this.shrink(to.shrink());
 				try {
-					this.wait(an.getDelay());
+					this.wait(an.delay());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.grow() + " " + this.shrink() + " " + this.basis();
 	}
 }

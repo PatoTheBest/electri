@@ -6,4 +6,9 @@ public enum TextAlign implements Style {
 	CENTER,
 	JUSTIFY,
 	INHERIT;
+
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

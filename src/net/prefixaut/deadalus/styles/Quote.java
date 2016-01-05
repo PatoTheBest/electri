@@ -17,19 +17,19 @@ public class Quote implements Serializable {
 		this.close = close;
 	}
 	
-	public String getOpen() {
+	public String open() {
 		return open;
 	}
 	
-	public void setOpen(String open) {
+	public void open(String open) {
 		this.open = open;
 	}
 	
-	public String getClose() {
+	public String close() {
 		return close;
 	}
 	
-	public void setClose(String close) {
+	public void close(String close) {
 		this.close = close;
 	}
 }

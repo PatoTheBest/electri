@@ -59,43 +59,48 @@ public class Font implements Style, Serializable {
 		this.variant = variant;
 	}
 	
-	public FontFamily getFamily() {
+	public FontFamily family() {
 		return family;
 	}
 	
-	public void setFamily(FontFamily family) {
+	public void family(FontFamily family) {
 		this.family = family;
 	}
 	
-	public Size getSize() {
+	public Size size() {
 		return size;
 	}
 	
-	public void setSize(Size size) {
+	public void size(Size size) {
 		this.size = size;
 	}
 	
-	public int getWeight() {
+	public int weight() {
 		return weight;
 	}
 	
-	public void setWeight(int weight) {
+	public void weight(int weight) {
 		this.weight = weight;
 	}
 	
-	public FontStyle getStyle() {
+	public FontStyle style() {
 		return style;
 	}
 	
-	public void setStyle(FontStyle style) {
+	public void style(FontStyle style) {
 		this.style = style;
 	}
 	
-	public FontVariant getVariant() {
+	public FontVariant variant() {
 		return variant;
 	}
 	
-	public void setVariant(FontVariant variant) {
+	public void variant(FontVariant variant) {
 		this.variant = variant;
+	}
+
+	@Override
+	public String css() {
+		return this.style() + " " + this.variant() + " " + this.weight() + " " + this.size() + " " + this.family();
 	}
 }

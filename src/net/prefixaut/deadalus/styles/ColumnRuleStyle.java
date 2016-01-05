@@ -12,4 +12,9 @@ public enum ColumnRuleStyle implements Style {
 	INSET,
 	OUTSET,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

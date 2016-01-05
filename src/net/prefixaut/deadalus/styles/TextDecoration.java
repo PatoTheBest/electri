@@ -6,4 +6,9 @@ public enum TextDecoration implements Style {
 	OVERLINE,
 	LINE_THROUGH,
 	INHERIT;
+
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

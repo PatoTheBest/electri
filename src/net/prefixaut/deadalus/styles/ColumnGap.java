@@ -24,15 +24,15 @@ public class ColumnGap implements Style, Animatable<ColumnGap>, Serializable {
 		this.gap = length;
 	}
 	
-	public Size getGap() {
+	public Size gap() {
 		return gap;
 	}
 	
-	public void setGap(double length) {
+	public void gap(double length) {
 		this.gap = new Size(length);
 	}
 	
-	public void setGap(Size length) {
+	public void gap(Size length) {
 		this.gap = length;
 	}
 	
@@ -61,7 +61,12 @@ public class ColumnGap implements Style, Animatable<ColumnGap>, Serializable {
 	@Override
 	public Runnable animate(ColumnGap to, Animation an) {
 		return () -> {
-			this.getGap().animate(to.getGap(), an).run();
+			this.gap().animate(to.gap(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.gap().toString();
 	}
 }

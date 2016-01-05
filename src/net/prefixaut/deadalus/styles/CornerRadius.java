@@ -41,35 +41,40 @@ public class CornerRadius implements Animatable<CornerRadius>, Serializable {
 		this.height = height;
 	}
 	
-	public Size getWidth() {
+	public Size width() {
 		return width;
 	}
 	
-	public void setWidth(double width) {
+	public void width(double width) {
 		this.width = new Size(width);
 	}
 	
-	public void setWidth(Size width) {
+	public void width(Size width) {
 		this.width = width;
 	}
 	
-	public Size getHeight() {
+	public Size height() {
 		return height;
 	}
 	
-	public void setHeight(double height) {
+	public void height(double height) {
 		this.height = new Size(height);
 	}
 	
-	public void setHeight(Size height) {
+	public void height(Size height) {
 		this.height = height;
 	}
 	
 	@Override
 	public Runnable animate(CornerRadius to, Animation an) {
 		return () -> {
-			this.getHeight().animate(to.getHeight(), an).run();
-			this.getWidth().animate(to.getWidth(), an).run();
+			this.height().animate(to.height(), an).run();
+			this.width().animate(to.width(), an).run();
 		};
+	}
+	
+	@Override
+	public String toString() {
+		return this.width() + " " + this.height();
 	}
 }

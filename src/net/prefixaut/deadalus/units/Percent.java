@@ -1,23 +1,12 @@
 package net.prefixaut.deadalus.units;
 
-import net.prefixaut.deadalus.Component;
 import net.prefixaut.deadalus.util.RelativeSizeUnit;
 
 public class Percent implements RelativeSizeUnit {
 	
-	private double relation;
-	private byte defID = 0;
+	private Percent() {}
 	
-	
-	
-	public Percent(Component parent, boolean useHeight) {
-		if (!useHeight) relation = parent.getWidth().getUnit().convertToPixel(parent.getWidth());
-		else relation = parent.getHeight().getUnit().convertToPixel(parent.getHeight());
-	}
-	
-	public Percent(double relation) {
-		this.relation = relation;
-	}
+	public static Percent PERCENT = new Percent();
 	
 	@Override
 	public String getDefinition(double amount) {
@@ -26,16 +15,14 @@ public class Percent implements RelativeSizeUnit {
 	
 	@Override
 	public double getKey() {
-		return relation;
+		return 1;
 	}
 	
 	@Override
-	public void setRelation(double relation) {
-		this.relation = relation;
-	}
+	public void setRelation(double relation) {}
 	
 	@Override
 	public double getRaltion() {
-		return this.relation;
+		return 1;
 	}
 }

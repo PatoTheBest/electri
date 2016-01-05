@@ -6,4 +6,9 @@ public enum Resize implements Style {
 	HORIZONTAL,
 	VERTICAL,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

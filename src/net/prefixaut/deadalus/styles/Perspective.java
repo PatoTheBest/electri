@@ -24,11 +24,11 @@ public class Perspective implements Style, Animatable<Perspective>, Serializable
 		this.view = view;
 	}
 	
-	public Size getView() {
+	public Size view() {
 		return view;
 	}
 	
-	public void setView(Size view) {
+	public void view(Size view) {
 		this.view = view;
 	}
 	
@@ -57,7 +57,12 @@ public class Perspective implements Style, Animatable<Perspective>, Serializable
 	@Override
 	public Runnable animate(Perspective to, Animation an) {
 		return () -> {
-			this.getView().animate(to.getView(), an).run();
+			this.view().animate(to.view(), an).run();
 		};
+	}
+
+	@Override
+	public String css() {
+		return this.view().toString();
 	}
 }

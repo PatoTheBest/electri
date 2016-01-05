@@ -38,11 +38,11 @@ public class ZIndex implements Style, Animatable<ZIndex>, Serializable {
 		return true;
 	}
 	
-	public int getIndex() {
+	public int index() {
 		return index;
 	}
 	
-	public void setIndex(int index) {
+	public void index(int index) {
 		this.index = index;
 	}
 	
@@ -51,5 +51,10 @@ public class ZIndex implements Style, Animatable<ZIndex>, Serializable {
 		return () -> {
 			// TODO: WELP
 		};
+	}
+
+	@Override
+	public String css() {
+		return "" + this.index();
 	}
 }

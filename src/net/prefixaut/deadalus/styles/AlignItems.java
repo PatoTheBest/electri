@@ -7,4 +7,9 @@ public enum AlignItems implements Style {
 	FLEX_END,
 	BASELINE,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

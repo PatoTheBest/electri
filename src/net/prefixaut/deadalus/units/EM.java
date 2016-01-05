@@ -14,7 +14,7 @@ public final class EM implements RelativeSizeUnit {
 	}
 	
 	public EM(FontSupport parent) {
-		this.relation = parent.getFontSize().getUnit().convertToPixel(parent.getFontSize());
+		this.relation = parent.getFontSize().unit().convertToPixel(parent.getFontSize());
 	}
 	
 	@Override

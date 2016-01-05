@@ -3,6 +3,7 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 import java.util.Collection;
 
+import net.prefixaut.prelib.PreLib;
 import net.prefixaut.prelib.SyncArrayList;
 
 public class Transition implements Style, Serializable {
@@ -87,27 +88,34 @@ public class Transition implements Style, Serializable {
 		this.properties = properties;
 	}
 	
-	public long getDuration() {
+	public long duration() {
 		return duration;
 	}
 	
-	public void setDuration(long duration) {
+	public void duration(long duration) {
 		this.duration = duration;
 	}
 	
-	public long getDelay() {
+	public long delay() {
 		return delay;
 	}
 	
-	public void setDelay(long delay) {
+	public void delay(long delay) {
 		this.delay = delay;
 	}
 	
-	public TransitionTiming getTiming() {
+	public TransitionTiming timing() {
 		return timing;
 	}
 	
-	public void setTiming(TransitionTiming timing) {
+	public void timing(TransitionTiming timing) {
 		this.timing = timing;
+	}
+
+	@Override
+	public String css() {
+		return PreLib.list(",", this.properties, (c) -> {
+			return c.getName().contains(".") ? c.getName().substring(c.getName().lastIndexOf(".") + 1) : c.getName();
+		}) + " " + this.duration() + " " + this.timing() + " " + this.delay();
 	}
 }

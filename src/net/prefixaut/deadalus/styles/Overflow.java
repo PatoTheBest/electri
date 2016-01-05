@@ -6,4 +6,9 @@ public enum Overflow implements Style {
 	SCROLL,
 	AUTO,
 	INHERIT;
+	
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }

@@ -11,4 +11,9 @@ public enum Visibility implements Style, Animatable<Visibility> {
 			// TODO: Defuq? XD
 		};
 	}
+
+	@Override
+	public String css() {
+		return this.name().contains("_") ? this.name().toLowerCase().replaceAll("_", "-") : this.name().toLowerCase();
+	}
 }
