@@ -2,8 +2,6 @@
 The Deadalus Framework is planed and constructed as "replacement" for all the local HTML/CSS/JS Applications out there.
 It'll offer an XML-Layout Language like HTML, full CSS Support but backed with a solid Programing Language.
 
-The entire Framework will (mostly) be a standalone Framework. What that means is, that it's not going to rely on other Libraries or Frameworks such as Java AWT or Java FX to provide maximal functionality, flexibility and extendibility.
-
 ## Feedback & Collaboration
 Found bugs? Something is missing? You want to help out?
 
