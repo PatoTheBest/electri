@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
 
-import com.sun.javafx.css.SizeUnits;
-
 public class BackgroundPosition implements Style, Animatable<BackgroundPosition>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000007L;
@@ -92,20 +90,9 @@ public class BackgroundPosition implements Style, Animatable<BackgroundPosition>
 			this.y().animate(to.y(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return x + " " + y;
 	}
-	
-//	TODO: Clean up this Mess
-//	public static final BackgroundPosition LEFT_TOP = new BackgroundPosition(new Size(0), new Size(0));
-//	public static final BackgroundPosition LEFT_CENTER = new BackgroundPosition(new Size(0), new Size(SizeUnits.PERCENT, 50));
-//	public static final BackgroundPosition LEFT_BOTTOM = new BackgroundPosition(new Size(0), new Size(SizeUnits.PERCENT, 100));
-//	public static final BackgroundPosition RIGHT_TOP = new BackgroundPosition(new Size(SizeUnits.PERCENT, 100), new Size(0));
-//	public static final BackgroundPosition RIGHT_CENTER = new BackgroundPosition(new Size(SizeUnits.PERCENT, 100), new Size(SizeUnits.PERCENT, 50));
-//	public static final BackgroundPosition RIGHT_BOTTOM = new BackgroundPosition(new Size(SizeUnits.PERCENT, 100), new Size(SizeUnits.PERCENT, 100));
-//	public static final BackgroundPosition CENTER_TOP = new BackgroundPosition(new Size(SizeUnits.PERCENT, 50), new Size(0));
-//	public static final BackgroundPosition CENTER_CENTER = new BackgroundPosition(new Size(SizeUnits.PERCENT, 50), new Size(SizeUnits.PERCENT, 50));
-//	public static final BackgroundPosition CENTER_BOTTOM = new BackgroundPosition(new Size(SizeUnits.PERCENT, 50), new Size(SizeUnits.PERCENT, 100));
 }

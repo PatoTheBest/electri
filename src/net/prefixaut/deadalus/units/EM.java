@@ -1,6 +1,5 @@
 package net.prefixaut.deadalus.units;
 
-import net.prefixaut.deadalus.support.FontSupport;
 import net.prefixaut.deadalus.util.RelativeSizeUnit;
 
 public final class EM implements RelativeSizeUnit {
@@ -11,10 +10,6 @@ public final class EM implements RelativeSizeUnit {
 	
 	public EM(double relation) {
 		this.relation = relation;
-	}
-	
-	public EM(FontSupport parent) {
-		this.relation = parent.getFontSize().unit().convertToPixel(parent.getFontSize());
 	}
 	
 	@Override

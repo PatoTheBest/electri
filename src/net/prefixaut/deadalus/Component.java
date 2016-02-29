@@ -35,14 +35,6 @@ public abstract class Component implements Element<Component>, Serializable {
 	 */
 	protected Component parent = null;
 	/**
-	 * CSS-ID of this Component.
-	 */
-	protected String id;
-	/**
-	 * List of all CSS-Classes this Component has.
-	 */
-	protected SyncArrayList<String> classes = new SyncArrayList<>();
-	/**
 	 * Attributes of this Component, for example src="/file.txt" would be mapped as {"src", "file.txt"}
 	 */
 	protected SyncPairMap<String, Object> attributes = new SyncPairMap<>();
@@ -77,6 +69,7 @@ public abstract class Component implements Element<Component>, Serializable {
 			
 	public Component(String name) {
 		this.name = name;
+		this.attributes.put("class", new SyncArrayList<String>());
 	}
 	
 	public Component(String name, Component parent) {
@@ -153,49 +146,73 @@ public abstract class Component implements Element<Component>, Serializable {
 	 * Gets the CSS-ID of this Component.
 	 */
 	public final String id() {
-		return this.id;
+		return this.attribute("id").toString();
 	}
 	
 	/**
 	 * Sets the CSS-ID of this Component.
 	 */
 	public final void id(String cssID) {
-		this.id = cssID;
+		this.attributes("id", cssID);
 	}
 	
 	/**
 	 * Adds CSS-Classes to this Component.
 	 */
-	public final boolean addClass(String... cssClasses) {
-		return this.classes.addAll(cssClasses);
+	public final void addClass(String... cssClasses) {
+		if (cssClasses == null) throw new IllegalArgumentException("NULL is not a valid Parameter!");
+		this.addClass(Arrays.asList(cssClasses));
 	}
 	
 	/**
 	 * Adds CSS-Classes to this Component.
 	 */
-	public final boolean addClass(Collection<String> cssClasses) {
-		return this.classes.addAll(cssClasses);
+	public final void addClass(Collection<String> cssClasses) {
+		if (cssClasses == null) throw new IllegalArgumentException("NULL is not a valid Parameter!");
+		List<String> t =  this.classes();
+		// Add new classes
+		for (String s : cssClasses) if (s != null) t.add(s);
+		// Set it
+		this.attributes("class", t);
 	}
 	
 	/**
 	 * Gets all CSS-Classes of this Component.
 	 */
-	public final SyncArrayList<String> classes() {
-		return this.classes.getCopy();
+	public final List<String> classes() {
+		Object o = this.attribute("class");
+		List<String> t = new ArrayList<String>();
+		// Put the current converted values into new list
+		if (o == null) {
+			o = new ArrayList<String>();
+		} else if (o.getClass().isArray()) {
+			Object[] r = (Object[]) o;
+			for (int i=0;i<r.length;i++) if (r[i]!=null) t.add(r.toString());
+		} else if (o instanceof List<?>) {
+			List<?> tmp = (List<?>) o;
+			for (Object obj : tmp) if (obj != null) t.add(obj.toString());
+		} else {
+			t.add(o.toString());
+		}
+		return t;
 	}
 	
 	/**
 	 * Removes CSS-Classes from this Component.
 	 */
-	public final boolean removeClass(String... cssClasses) {
-		return this.classes.removeAll(cssClasses);
+	public final void removeClass(String... cssClasses) {
+		if (cssClasses == null) throw new IllegalArgumentException("NULL is not a valid Parameter!");
+		this.removeClass(Arrays.asList(cssClasses));
 	}
 	
 	/**
 	 * Removes CSS-Classes from this Component.
 	 */
-	public final boolean removeClass(Collection<String> cssClasses) {
-		return this.classes.removeAll(cssClasses);
+	public final void removeClass(Collection<String> cssClasses) {
+		if (cssClasses == null) throw new IllegalArgumentException("NULL is not a valid Parameter!");
+		List<String> t = this.classes();
+		t.removeAll(cssClasses);
+		this.attributes("class", t);
 	}
 	
 	/**

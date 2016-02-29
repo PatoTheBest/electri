@@ -1,17 +1,7 @@
 package net.prefixaut.deadalus;
 
 
-public interface Video extends Media, Audio {
-	
-	// Control Getters
-	public boolean play();
-	public boolean pause();
-	public boolean stop();
-	
-	// Control Setters
-	public boolean playing();
-	public boolean paused();
-	public boolean stopped();
+public interface Video extends PlayableMedia, Audio {
 	
 	// Position
 	public long lenght();

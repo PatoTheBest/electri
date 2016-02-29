@@ -33,6 +33,7 @@ public class Color implements Animatable<Color>, Serializable {
 	}
 	
 	public Color(int red, int green, int blue, int alpha) {
+		this.check(red, green, blue);
 		this.value = ( (red & 0xFF) << 24 | (green & 0xFF) << 16 | (blue & 0xFF) << 8 | (alpha & 0xFF) << 0);
 	}
 	
@@ -41,6 +42,7 @@ public class Color implements Animatable<Color>, Serializable {
 	}
 	
 	public final void red(int red) {
+		this.check(red);
 		this.value = ( (red & 0xFF) << 24 | (this.green() & 0xFF) << 16 | (this.blue() & 0xFF) << 8 | (this.alpha() & 0xFF) << 0);
 	}
 	
@@ -49,6 +51,7 @@ public class Color implements Animatable<Color>, Serializable {
 	}
 	
 	public final void green(int green) {
+		this.check(green);
 		this.value = ( (this.red() & 0xFF) << 24 | (green & 0xFF) << 16 | (this.blue() & 0xFF) << 8 | (this.alpha() & 0xFF) << 0);
 	}
 	
@@ -57,6 +60,7 @@ public class Color implements Animatable<Color>, Serializable {
 	}
 	
 	public final void blue(int blue) {
+		this.check(blue);
 		this.value = ( (this.red() & 0xFF) << 24 | (this.green() & 0xFF) << 16 | (blue & 0xFF) << 8 | (this.alpha() & 0xFF) << 0);
 	}
 	
@@ -65,6 +69,7 @@ public class Color implements Animatable<Color>, Serializable {
 	}
 	
 	public final void alpha(int alpha) {
+		this.check(alpha);
 		this.value = ( (this.red() & 0xFF) << 24 | (this.green() & 0xFF) << 16 | (this.blue() & 0xFF) << 8 | (alpha & 0xFF) << 0);
 	}
 	
@@ -74,6 +79,17 @@ public class Color implements Animatable<Color>, Serializable {
 	
 	public final int argb() {
 		return ( (this.alpha() & 0xFF) << 24 | (this.red() & 0xFF) << 16 | (this.green() & 0xFF) << 8 | (this.blue() & 0xFF) << 0);
+	}
+	
+	public Color invert() {
+		return Color.invert(this);
+	}
+	
+	/**
+	 * Method to check if a Color-Value is valid (Between 0 and 255)
+	 */
+	private void check(int... ints) {
+		for (int i = 0; i < ints.length; i++) if (ints[i] < 0 || ints[i] > 0xFF) throw new IllegalArgumentException("The Value is invalid since it's negative or bigger than 255!");
 	}
 	
 	public static final Color ALICE_BLUE = Color.hex(0xF0F8FF);
@@ -257,10 +273,6 @@ public class Color implements Animatable<Color>, Serializable {
 	public static Color hsla(double hue, double saturation, double light, int alpha) {
 		// TODO:
 		return Color.hex(0x000000);
-	}
-	
-	public Color invert() {
-		return Color.invert(this);
 	}
 	
 	/**
