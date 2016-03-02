@@ -35,7 +35,7 @@ public abstract class Component implements Element<Component>, Serializable {
 	 */
 	protected Component parent = null;
 	/**
-	 * Attributes of this Component, for example src="/file.txt" would be mapped as {"src", "file.txt"}
+	 * Attributes of this Component, for example src="/file.txt" would be mapped as {"src", "/file.txt"}
 	 */
 	protected SyncPairMap<String, Object> attributes = new SyncPairMap<>();
 	/**

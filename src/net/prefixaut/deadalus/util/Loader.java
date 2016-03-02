@@ -1,7 +1,8 @@
-package net.prefixaut.deadalus;
+package net.prefixaut.deadalus.util;
 
 import java.io.File;
 
+import net.prefixaut.deadalus.Component;
 import net.prefixaut.prelib.xml.Document;
 
 /**

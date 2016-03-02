@@ -36,7 +36,7 @@ public class CSS3 {
 	 */
 	private CSS3() {}
 	
-	public static class Converter implements IStyleConverter {
+	public static class Converter implements StyleConverter {
 		
 		/**
 		 * Private Constructor to remove the Constructor since it's not being used.
