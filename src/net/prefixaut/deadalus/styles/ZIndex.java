@@ -2,10 +2,13 @@ package net.prefixaut.deadalus.styles;
 
 import java.io.Serializable;
 
+import net.prefixaut.deadalus.css.Style;
+
 public class ZIndex implements Style, Animatable<ZIndex>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000028L;
 	private byte defID = 0;
+	private boolean important = false;
 	private int index = 0;
 	public static final ZIndex AUTO = new ZIndex((byte) 1);
 	public static final ZIndex INHERIT = new ZIndex((byte) Byte.MAX_VALUE);
@@ -52,9 +55,19 @@ public class ZIndex implements Style, Animatable<ZIndex>, Serializable {
 			// TODO: WELP
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return "" + this.index();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

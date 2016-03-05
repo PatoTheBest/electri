@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import net.prefixaut.deadalus.Color;
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class ColumnRule implements Style, Animatable<ColumnRule>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000000DL;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size width = new Size(0);
 	private ColumnRuleStyle style = ColumnRuleStyle.NONE;
 	private Color color = Color.BLACK;
@@ -109,7 +111,7 @@ public class ColumnRule implements Style, Animatable<ColumnRule>, Serializable {
 		} else if (!width.equals(other.width)) return false;
 		return true;
 	}
-
+	
 	@Override
 	public Runnable animate(ColumnRule to, Animation an) {
 		return () -> {
@@ -117,9 +119,19 @@ public class ColumnRule implements Style, Animatable<ColumnRule>, Serializable {
 			this.width().animate(to.width(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.width() + " " + this.style() + " " + this.color();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

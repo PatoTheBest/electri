@@ -3,12 +3,14 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 import java.util.Collection;
 
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.prelib.SyncArrayList;
 
 public class Quotes implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000001FL;
 	private byte defID = 0;
+	private boolean important = false;
 	private SyncArrayList<Quote> quotes = new SyncArrayList<>();
 	public static final Quotes NONE = new Quotes((byte) 1);
 	public static final Quotes INHERIT = new Quotes((byte) Byte.MAX_VALUE);
@@ -66,10 +68,20 @@ public class Quotes implements Style, Serializable {
 		} else if (!quotes.equals(other.quotes)) return false;
 		return true;
 	}
-
+	
 	@Override
 	public String css() {
 		// TODO:
 		return null;
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

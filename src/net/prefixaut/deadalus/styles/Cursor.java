@@ -7,10 +7,12 @@ import java.nio.file.Path;
 
 import net.prefixaut.deadalus.BufferedImage;
 import net.prefixaut.deadalus.Image;
+import net.prefixaut.deadalus.css.Style;
 
 public class Cursor implements Style {
 	
 	private byte defID = 0;
+	private boolean important = false;
 	private Image image;
 	public static final Cursor ALIAS = new Cursor((byte) 1);
 	public static final Cursor ALL_SCROLL = new Cursor((byte) 2);
@@ -113,10 +115,137 @@ public class Cursor implements Style {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String css() {
-		// TODO:
-		return null;
+		String r = "cursor: ";
+		switch (this.defID) {
+			case 1:
+				r += "alias";
+				break;
+			case 2:
+				r += "all-scroll";
+				break;
+			case 3:
+				r += "auto";
+				break;
+			case 4:
+				r += "cell";
+				break;
+			case 5:
+				r += "context-menu";
+				break;
+			case 6:
+				r += "col-resize";
+				break;
+			case 7:
+				r += "copy";
+				break;
+			case 8:
+				r += "crosshair";
+				break;
+			case 9:
+				r += "default";
+				break;
+			case 10:
+				r += "e-resize";
+				break;
+			case 11:
+				r += "ew-resize";
+				break;
+			case 12:
+				r += "grab";
+				break;
+			case 13:
+				r += "grabbing";
+				break;
+			case 14:
+				r += "help";
+				break;
+			case 15:
+				r += "move";
+				break;
+			case 16:
+				r += "n-resize";
+				break;
+			case 17:
+				r += "ne-resize";
+				break;
+			case 18:
+				r += "nesw-resize";
+				break;
+			case 19:
+				r += "ns-resize";
+				break;
+			case 20:
+				r += "nw-resize";
+				break;
+			case 21:
+				r += "nwse-resize";
+				break;
+			case 22:
+				r += "no-drop";
+				break;
+			case 23:
+				r += "none";
+				break;
+			case 24:
+				r += "not-allowed";
+				break;
+			case 25:
+				r += "pointer";
+				break;
+			case 26:
+				r += "progress";
+				break;
+			case 27:
+				r += "row-resize";
+				break;
+			case 28:
+				r += "s-resize";
+				break;
+			case 29:
+				r += "se-resize";
+				break;
+			case 30:
+				r += "sw-resize";
+				break;
+			case 31:
+				r += "text";
+				break;
+			case 32:
+				r += "vertical-text";
+				break;
+			case 33:
+				r += "w-resize";
+				break;
+			case 34:
+				r += "wait";
+				break;
+			case 35:
+				r += "zoom-in";
+				break;
+			case 36:
+				r += "zoom-out";
+				break;
+			case 37:
+				r += "inherit";
+				break;
+			// TODO: Return Image
+			default:
+				return null;
+		}
+		r += ";";
+		return r;
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

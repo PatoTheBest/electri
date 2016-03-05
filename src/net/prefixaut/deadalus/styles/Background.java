@@ -5,11 +5,13 @@ import java.io.Serializable;
 import net.prefixaut.deadalus.Color;
 import net.prefixaut.deadalus.Image;
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class Background implements Style, Animatable<Background>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000006L;
 	private byte defID = 0;
+	private boolean important = false;
 	private BackgroundPosition position = BackgroundPosition.LEFT_TOP;
 	private BackgroundAttachment attachment = BackgroundAttachment.SCROLL;
 	private BackgroundRepeat repeat = BackgroundRepeat.NONE;
@@ -197,9 +199,19 @@ public class Background implements Style, Animatable<Background>, Serializable {
 			this.height().animate(to.height(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return String.format("%s %s %s %s %s %s %s", this.color(), this.image(), this.position(), this.repeat(), this.origin(), this.clip(), this.attachment());
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

@@ -3,12 +3,14 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 import java.util.Collection;
 
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.prelib.PreLib;
 import net.prefixaut.prelib.SyncArrayList;
 
 public class Transition implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000025L;
+	private boolean important = false;
 	private SyncArrayList<Class<? extends Style>> properties;
 	/**
 	 * Time in Milliseconds
@@ -111,11 +113,21 @@ public class Transition implements Style, Serializable {
 	public void timing(TransitionTiming timing) {
 		this.timing = timing;
 	}
-
+	
 	@Override
 	public String css() {
 		return PreLib.list(",", this.properties, (c) -> {
 			return c.getName().contains(".") ? c.getName().substring(c.getName().lastIndexOf(".") + 1) : c.getName();
 		}) + " " + this.duration() + " " + this.timing() + " " + this.delay();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

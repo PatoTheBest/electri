@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import net.prefixaut.deadalus.Color;
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class Outline implements Style, Animatable<Outline>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000001AL;
 	private byte defID = 0;
+	private boolean important = false;
 	private Color color = Color.INVERTED;
 	private OutlineStyle style = OutlineStyle.NONE;
 	private Size width = new Size(0);
@@ -215,9 +217,19 @@ public class Outline implements Style, Animatable<Outline>, Serializable {
 			this.width().animate(to.width(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.color() + " " + this.style() + " " + this.width();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

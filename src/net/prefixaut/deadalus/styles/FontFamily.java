@@ -5,9 +5,12 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Path;
 
+import net.prefixaut.deadalus.css.Style;
+
 public class FontFamily implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000013L;
+	private boolean important = false;
 	private String name;
 	private String author;
 	private String copyright;
@@ -25,8 +28,7 @@ public class FontFamily implements Style, Serializable {
 		this(path.toFile());
 	}
 	
-	public FontFamily(InputStream stream) {
-	}
+	public FontFamily(InputStream stream) {}
 	
 	public String getName() {
 		return name;
@@ -59,10 +61,20 @@ public class FontFamily implements Style, Serializable {
 	public void setType(FontType type) {
 		this.type = type;
 	}
-
+	
 	@Override
 	public String css() {
 		// TODO:
 		return null;
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

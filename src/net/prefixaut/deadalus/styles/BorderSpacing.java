@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class BorderSpacing implements Style, Animatable<BorderSpacing>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000009L;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size horizontal = new Size(0), vertical = new Size(0);
 	public static final BorderSpacing INHERIT = new BorderSpacing((byte) Byte.MAX_VALUE);
 	
@@ -72,10 +74,8 @@ public class BorderSpacing implements Style, Animatable<BorderSpacing>, Serializ
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + defID;
-		result = prime * result
-				+ ( (horizontal == null) ? 0 : horizontal.hashCode());
-		result = prime * result
-				+ ( (vertical == null) ? 0 : vertical.hashCode());
+		result = prime * result + ( (horizontal == null) ? 0 : horizontal.hashCode());
+		result = prime * result + ( (vertical == null) ? 0 : vertical.hashCode());
 		return result;
 	}
 	
@@ -110,9 +110,19 @@ public class BorderSpacing implements Style, Animatable<BorderSpacing>, Serializ
 			this.vertical().animate(to.vertical(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return horizontal + " " + vertical;
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

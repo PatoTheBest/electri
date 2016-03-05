@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class Perspective implements Style, Animatable<Perspective>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000001CL;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size view = new Size(0);
 	public static final Perspective NONE = new Perspective((byte) 1);
 	public static final Perspective INHERIT = new Perspective((byte) Byte.MAX_VALUE);
@@ -60,9 +62,19 @@ public class Perspective implements Style, Animatable<Perspective>, Serializable
 			this.view().animate(to.view(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.view().toString();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

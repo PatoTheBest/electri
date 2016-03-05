@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class Columns implements Style, Animatable<Columns>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000000EL;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size width = Size.AUTO;
 	private int count = 1;
 	public static final Columns AUTO = new Columns((byte) 1);
@@ -85,9 +87,19 @@ public class Columns implements Style, Animatable<Columns>, Serializable {
 			this.width().animate(to.width(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.width() + " " + this.count();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

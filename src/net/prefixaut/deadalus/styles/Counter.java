@@ -3,6 +3,8 @@ package net.prefixaut.deadalus.styles;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.prefixaut.deadalus.css.Style;
+
 public final class Counter implements Style {
 	
 	private Counter() {}
@@ -38,5 +40,16 @@ public final class Counter implements Style {
 	public String css() {
 		// TODO:
 		return null;
+	}
+
+	@Override
+	public boolean important() {
+		// TODO: Wat
+		return false;
+	}
+
+	@Override
+	public void important(boolean important) {
+		// TODO: Wat
 	}
 }

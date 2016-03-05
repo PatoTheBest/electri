@@ -2,12 +2,14 @@ package net.prefixaut.deadalus.styles;
 
 import java.io.Serializable;
 
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.prelib.util.Limited;
 
 public class Opacity implements Style, Animatable<Opacity>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000019L;
 	private byte defID = 0;
+	private boolean important = false;
 	private Limited<Double> opacity = new Limited<>(0.0, 100.0);
 	public static final Opacity INHERIT = new Opacity((byte) Byte.MAX_VALUE);
 	
@@ -99,9 +101,19 @@ public class Opacity implements Style, Animatable<Opacity>, Serializable {
 			}
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return "" + this.opacity();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

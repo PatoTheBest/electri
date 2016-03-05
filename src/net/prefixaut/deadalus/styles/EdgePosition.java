@@ -5,7 +5,7 @@ import net.prefixaut.deadalus.Size;
 public class EdgePosition extends AnimatableShapeAddition<Size> {
 	
 	private static final long serialVersionUID = 0x1000200020000010L;
-
+	
 	public EdgePosition() {
 		super(Size.AUTO);
 	}

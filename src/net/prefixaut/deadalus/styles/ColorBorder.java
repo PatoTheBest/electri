@@ -8,6 +8,7 @@ import net.prefixaut.deadalus.Size;
 public class ColorBorder implements SingleBorder<ColorBorder>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000000BL;
+	private boolean important = false;
 	private Color color = Color.BLACK;
 	private Size width = new Size(1);
 	private BorderStyle style = BorderStyle.SOLID;
@@ -125,9 +126,19 @@ public class ColorBorder implements SingleBorder<ColorBorder>, Serializable {
 			this.width.animate(to.width(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.width() + " " + this.style() + " " + this.color();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

@@ -3,10 +3,12 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class PerspectiveOrigin implements Style, Animatable<PerspectiveOrigin>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000001DL;
+	private boolean important = false;
 	private Size x = new Size(0), y = new Size(0);
 	
 	public PerspectiveOrigin(Size both) {
@@ -42,9 +44,19 @@ public class PerspectiveOrigin implements Style, Animatable<PerspectiveOrigin>, 
 			this.y().animate(to.y(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.x() + " " + this.y();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

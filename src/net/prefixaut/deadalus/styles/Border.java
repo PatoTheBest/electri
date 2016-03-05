@@ -1,10 +1,13 @@
 package net.prefixaut.deadalus.styles;
 
+import net.prefixaut.deadalus.css.Style;
+
 @SuppressWarnings("rawtypes")
-public class Border<T extends SingleBorder> extends AnimateableRoundableShapeAddition<T> implements Style {
+public class Border<T extends SingleBorder> extends AnimateableRoundableShapeAddition<T>implements Style {
 	
 	private static final long serialVersionUID = 0x1000200020000008L;
 	private byte defID = 0;
+	private boolean important = false;
 	public static final Border INHERIT = new Border(Byte.MAX_VALUE);
 	
 	private Border(byte defID) {
@@ -49,5 +52,15 @@ public class Border<T extends SingleBorder> extends AnimateableRoundableShapeAdd
 		if (defID != other.defID)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

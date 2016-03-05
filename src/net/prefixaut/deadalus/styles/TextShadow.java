@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import net.prefixaut.deadalus.Color;
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class TextShadow implements Style, Animatable<TextShadow>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000023L;
+	private boolean important = false;
 	private Size length = new Size(0), width = new Size(0), blur = new Size(0);
 	private Color color = Color.BLACK;
 	
@@ -87,9 +89,19 @@ public class TextShadow implements Style, Animatable<TextShadow>, Serializable {
 			this.width().animate(to.width(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.length() + " " + this.width() + " " + this.blur() + " " + this.color();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

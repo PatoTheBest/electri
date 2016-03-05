@@ -2,10 +2,13 @@ package net.prefixaut.deadalus.styles;
 
 import java.io.Serializable;
 
+import net.prefixaut.deadalus.css.Style;
+
 public class Animation implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000005L;
 	private byte defID = 0;
+	private boolean important = false;
 	private String name = "none";
 	/**
 	 * Time in Milliseconds
@@ -100,8 +103,7 @@ public class Animation implements Style, Serializable {
 		this.state = state;
 	}
 	
-	public Animation(String name, long duration, long delay, AnimationTiming timing, int iteration, AnimationDirection direction, AnimationFillMode mode, AnimationPlayState state,
-			double fps) {
+	public Animation(String name, long duration, long delay, AnimationTiming timing, int iteration, AnimationDirection direction, AnimationFillMode mode, AnimationPlayState state, double fps) {
 		this.name = name;
 		this.duration = duration;
 		this.delay = delay;
@@ -238,12 +240,19 @@ public class Animation implements Style, Serializable {
 		} else if (!timingData.equals(other.timingData)) return false;
 		return true;
 	}
-
+	
 	@Override
 	public String css() {
-		return String.format("%s %d %s %d %d %s %s %s", this.name(), this.duration(), this.timing(), this.delay(), this.iterations(), 
-				this.direction().name().toLowerCase().replaceAll("_", "-"),
-				this.mode().name().toLowerCase().replaceAll("_", "-"),
-				this.state().name().toLowerCase().replaceAll("_", "-"));
+		return String.format("%s %d %s %d %d %s %s %s", this.name(), this.duration(), this.timing(), this.delay(), this.iterations(), this.direction().name().toLowerCase().replaceAll("_", "-"), this.mode().name().toLowerCase().replaceAll("_", "-"), this.state().name().toLowerCase().replaceAll("_", "-"));
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

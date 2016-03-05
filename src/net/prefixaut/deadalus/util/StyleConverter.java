@@ -1,6 +1,6 @@
 package net.prefixaut.deadalus.util;
 
-import net.prefixaut.deadalus.styles.Style;
+import net.prefixaut.deadalus.css.Style;
 
 @FunctionalInterface
 public interface StyleConverter {

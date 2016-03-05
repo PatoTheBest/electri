@@ -3,10 +3,12 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class VerticalAlign implements Style, Animatable<VerticalAlign>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000026L;
+	private boolean important = false;
 	public static final VerticalAlign BASELINE = new VerticalAlign(0);
 	public static final VerticalAlign SUB = new VerticalAlign(1);
 	public static final VerticalAlign SUPER = new VerticalAlign(2);
@@ -77,9 +79,19 @@ public class VerticalAlign implements Style, Animatable<VerticalAlign>, Serializ
 			this.amount().animate(to.amount(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.amount().toString();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

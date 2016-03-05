@@ -13,6 +13,7 @@ import net.prefixaut.deadalus.Size;
 public class ImageBorder implements SingleBorder<ImageBorder>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000014L;
+	private boolean important = false;
 	private Image image;
 	private Size width = new Size(0), slice = new Size(0), outset = new Size(0);
 	private ImageBorderRepeat repeat = ImageBorderRepeat.STRETCH;
@@ -175,5 +176,15 @@ public class ImageBorder implements SingleBorder<ImageBorder>, Serializable {
 	@Override
 	public String css() {
 		return /* TODO: SOURCE + " " + */ this.slice() + " " + this.width() + " " + this.outset() + " " + this.repeat();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

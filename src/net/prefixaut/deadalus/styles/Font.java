@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.deadalus.util.CSS3;
 
 public class Font implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000012L;
+	private boolean important = false;
 	private FontFamily family;
 	private Size size = new Size(16);
 	private int weight = CSS3.FontWeight.INITIAL;
@@ -98,9 +100,19 @@ public class Font implements Style, Serializable {
 	public void variant(FontVariant variant) {
 		this.variant = variant;
 	}
-
+	
 	@Override
 	public String css() {
 		return this.style() + " " + this.variant() + " " + this.weight() + " " + this.size() + " " + this.family();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

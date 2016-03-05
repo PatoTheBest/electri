@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class BackgroundPosition implements Style, Animatable<BackgroundPosition>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000007L;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size x = new Size(0), y = new Size(0);
 	public static final BackgroundPosition INHERIT = new BackgroundPosition(Byte.MAX_VALUE);
 	
@@ -94,5 +96,15 @@ public class BackgroundPosition implements Style, Animatable<BackgroundPosition>
 	@Override
 	public String css() {
 		return x + " " + y;
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

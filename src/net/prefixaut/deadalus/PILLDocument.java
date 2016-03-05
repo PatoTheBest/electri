@@ -4,8 +4,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.prefixaut.deadalus.util.Loader;
-import net.prefixaut.deadalus.util.StyleConverter;
+import net.prefixaut.deadalus.util.FileLoader;
+import net.prefixaut.deadalus.util.ScriptLoader;
+import net.prefixaut.deadalus.util.StyleLoader;
 import net.prefixaut.prelib.xml.Document;
 
 public class PILLDocument implements Document<Component> {
@@ -22,11 +23,17 @@ public class PILLDocument implements Document<Component> {
 	 * File-Loaders which handle File loadings.
 	 * Mapped by the lower-case name.
 	 */
-	private Map<String, Loader> loader = new HashMap<>();
+	private Map<String, FileLoader> loader = new HashMap<>();
 	/**
-	 * Style-Converters which convert a String/Data to a CSS-Format which can be used and inserted.
+	 * TypeLoaders which load/parse a File/String and append it as CSS-Block into the Document.
+	 * Mapped by the lower-case type-name.
 	 */
-	private Map<String, StyleConverter> stylers = new HashMap<>();
+	private Map<String, StyleLoader> stylers = new HashMap<>();
+	/**
+	 * TypeLoaaders which load/parse a File/String and executes the Code.
+	 * Mapped by the lower-case type-name.
+	 */
+	private Map<String, ScriptLoader> scripters = new HashMap<>();
 	
 	public PILLDocument(Component root) {
 		this.root(root);
@@ -54,19 +61,27 @@ public class PILLDocument implements Document<Component> {
 		this.vars.put(name, obj);
 	}
 	
-	public Loader loader(String name) {
+	public FileLoader loader(String name) {
 		return this.loader.get(name);
 	}
 	
-	public void loader(String name, Loader loader) {
+	public void loader(String name, FileLoader loader) {
 		this.loader.put(name, loader);
 	}
 	
-	public StyleConverter styler(String name) {
+	public StyleLoader styler(String name) {
 		return this.stylers.get(name);
 	}
 	
-	public void styler(String name, StyleConverter styler) {
+	public void styler(String name, StyleLoader styler) {
 		this.stylers.put(name, styler);
+	}
+	
+	public ScriptLoader scripter(String name) {
+		return this.scripters.get(name);
+	}
+	
+	public void scripter(String name, ScriptLoader scripter) {
+		this.scripters.put(name, scripter);
 	}
 }

@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import net.prefixaut.deadalus.Color;
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class BoxShadow implements Style, Animatable<BoxShadow>, Serializable {
 	
 	private static final long serialVersionUID = 0x100020002000000AL;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size horizontalShadow = new Size(0), verticalShadow = new Size(0), blur = new Size(0), spread = new Size(0);
 	private Color color;
 	public static final BoxShadow INHERIT = new BoxShadow((byte) Byte.MAX_VALUE);
@@ -160,12 +162,9 @@ public class BoxShadow implements Style, Animatable<BoxShadow>, Serializable {
 		result = prime * result + ( (blur == null) ? 0 : blur.hashCode());
 		result = prime * result + ( (color == null) ? 0 : color.hashCode());
 		result = prime * result + defID;
-		result = prime
-				* result
-				+ ( (horizontalShadow == null) ? 0 : horizontalShadow.hashCode());
+		result = prime * result + ( (horizontalShadow == null) ? 0 : horizontalShadow.hashCode());
 		result = prime * result + ( (spread == null) ? 0 : spread.hashCode());
-		result = prime * result
-				+ ( (verticalShadow == null) ? 0 : verticalShadow.hashCode());
+		result = prime * result + ( (verticalShadow == null) ? 0 : verticalShadow.hashCode());
 		return result;
 	}
 	
@@ -218,9 +217,19 @@ public class BoxShadow implements Style, Animatable<BoxShadow>, Serializable {
 			this.vertical().animate(to.vertical(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.horizontal() + " " + this.vertical() + " " + this.blur() + " " + this.spread() + " " + this.color();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

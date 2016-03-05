@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class TextIndent implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000021L;
 	private byte defID = 0;
+	private boolean important = false;
 	private Size indent = new Size(0);
 	public static final TextIndent INHERIT = new TextIndent((byte) Byte.MAX_VALUE);
 	
@@ -58,9 +60,19 @@ public class TextIndent implements Style, Serializable {
 		} else if (!indent.equals(other.indent)) return false;
 		return true;
 	}
-
+	
 	@Override
 	public String css() {
 		return this.indent().toString();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

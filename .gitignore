@@ -2,7 +2,6 @@
 /target/
 /.settings/
 
-/src/net/prefixaut/deadalus/css/
 /src/net/prefixaut/deadalus/event/
 /src/net/prefixaut/deadalus/support/
 

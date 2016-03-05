@@ -3,10 +3,12 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class TransformOrigin implements Style, Animatable<TransformOrigin>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000024L;
+	private boolean important = false;
 	private Size x = new Size(0), y = new Size(0), z = new Size(0);
 	
 	public TransformOrigin(Size all) {
@@ -70,9 +72,19 @@ public class TransformOrigin implements Style, Animatable<TransformOrigin>, Seri
 			this.z().animate(to.z(), an).run();
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.x() + " " + this.y() + " " + this.z();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

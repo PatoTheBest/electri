@@ -2,10 +2,13 @@ package net.prefixaut.deadalus.styles;
 
 import java.io.Serializable;
 
+import net.prefixaut.deadalus.css.Style;
+
 public class TabSize implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000020L;
 	private byte defID = 0;
+	private boolean important = false;
 	private int space = 8;
 	private int tab = 0;
 	public static final TabSize INHERIT = new TabSize((byte) Byte.MAX_VALUE);
@@ -57,9 +60,19 @@ public class TabSize implements Style, Serializable {
 		if (tab != other.tab) return false;
 		return true;
 	}
-
+	
 	@Override
 	public String css() {
 		return "" + (tab > 0 ? tab * 4 : space);
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

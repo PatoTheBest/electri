@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 import net.prefixaut.deadalus.Component;
 import net.prefixaut.deadalus.SizeUnit;
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.deadalus.styles.Content;
 import net.prefixaut.deadalus.styles.Font;
-import net.prefixaut.deadalus.styles.Style;
 import net.prefixaut.deadalus.units.Centimeter;
 import net.prefixaut.deadalus.units.Inch;
 import net.prefixaut.deadalus.units.Millimeter;

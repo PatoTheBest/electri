@@ -3,11 +3,13 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.Size;
+import net.prefixaut.deadalus.css.Style;
 
 public class Flex implements Style, Animatable<Flex>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000011L;
 	private byte defID = 0;
+	private boolean important = false;
 	private int grow = 0, shrink = 0;
 	private Size basis = Size.AUTO;
 	public static final Flex AUTO = new Flex((byte) 1);
@@ -135,7 +137,7 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 						timeout = an.timing().timing(an.fps(), an.duration(), (long) max - frame);
 					}
 					this.basis(this.basis().unit().getKey() * (this.basis().asPixel() + difB));
-					this.shrink((int) (this.shrink() + difS)); 
+					this.shrink((int) (this.shrink() + difS));
 					this.grow((int) (this.grow() + difG));
 					long end = System.currentTimeMillis();
 					try {
@@ -161,9 +163,19 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 			}
 		};
 	}
-
+	
 	@Override
 	public String css() {
 		return this.grow() + " " + this.shrink() + " " + this.basis();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

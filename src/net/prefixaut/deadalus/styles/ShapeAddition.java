@@ -2,9 +2,12 @@ package net.prefixaut.deadalus.styles;
 
 import java.io.Serializable;
 
+import net.prefixaut.deadalus.css.Style;
+
 public abstract class ShapeAddition<T> implements Style, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200020000001L;
+	private boolean important = false;
 	private T top, right, bottom, left;
 	
 	public ShapeAddition() {}
@@ -81,12 +84,20 @@ public abstract class ShapeAddition<T> implements Style, Serializable {
 	
 	@Override
 	public String toString() {
-		return "BoxAddition {top=" + top + ", right=" + right + ", bottom="
-				+ bottom + ", left=" + left + "}";
+		return "BoxAddition {top=" + top + ", right=" + right + ", bottom=" + bottom + ", left=" + left + "}";
 	}
 	
 	@Override
 	public String css() {
 		return this.top() + " " + this.right() + " " + this.bottom() + " " + this.left();
+	}
+	
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	
+	public void important(boolean important) {
+		this.important = important;
 	}
 }
