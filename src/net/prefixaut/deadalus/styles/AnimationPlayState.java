@@ -21,6 +21,6 @@ public enum AnimationPlayState implements Style {
 	
 	@Override
 	public void important(boolean important) {
-		important = important;
+		this.important = important;
 	}
 }

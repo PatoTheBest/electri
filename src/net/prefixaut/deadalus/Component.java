@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.prefixaut.deadalus.css.StyleState;
 import net.prefixaut.deadalus.util.CSS3;
-import net.prefixaut.deadalus.util.StyleState;
-import net.prefixaut.prelib.SyncArrayList;
-import net.prefixaut.prelib.SyncPairMap;
-import net.prefixaut.prelib.util.Filter;
-import net.prefixaut.prelib.xml.Element;
+import net.prefixaut.deadalus.xml.Element;
+import net.prefixaut.prelib.Filter;
+import net.prefixaut.prelib.sync.SyncArrayList;
+import net.prefixaut.prelib.sync.SyncPairMap;
 
 /**
  * Very basic Object which can be displayed via PILL.

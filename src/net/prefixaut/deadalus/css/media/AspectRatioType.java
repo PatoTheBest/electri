@@ -1,7 +1,7 @@
 package net.prefixaut.deadalus.css.media;
 
 import net.prefixaut.deadalus.css.MediaFeatureType;
-import net.prefixaut.prelib.util.AspectRatio;
+import net.prefixaut.prelib.AspectRatio;
 
 public class AspectRatioType extends AspectRatio implements MediaFeatureType<AspectRatio> {
 	

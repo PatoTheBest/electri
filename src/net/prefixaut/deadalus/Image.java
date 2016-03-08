@@ -2,8 +2,8 @@ package net.prefixaut.deadalus;
 
 import java.io.Serializable;
 
-import net.prefixaut.prelib.util.Loadable;
-import net.prefixaut.prelib.util.Saveable;
+import net.prefixaut.prelib.Loadable;
+import net.prefixaut.prelib.Saveable;
 
 /**
  * Interface to define an Image. Is used to interact with Images the easiest way.

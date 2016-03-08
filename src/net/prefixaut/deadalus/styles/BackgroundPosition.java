@@ -12,6 +12,19 @@ public class BackgroundPosition implements Style, Animatable<BackgroundPosition>
 	private boolean important = false;
 	private Size x = new Size(0), y = new Size(0);
 	public static final BackgroundPosition INHERIT = new BackgroundPosition(Byte.MAX_VALUE);
+	// TODO: Will be set once Percent is done
+	public static final BackgroundPosition LEFT_TOP = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition LEFT_CENTER = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition LEFT_BOTTOM = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition LEFT = LEFT_CENTER;
+	public static final BackgroundPosition RIGHT_TOP = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition RIGHT_CENTER = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition RIGHT_BOTTOM = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition RIGHT = RIGHT_CENTER;
+	public static final BackgroundPosition CENTER_TOP = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition CENTER_CENTER = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition CENTER_BOTTOM = new BackgroundPosition(0, 0);
+	public static final BackgroundPosition CENTER = CENTER_CENTER;
 	
 	private BackgroundPosition(byte defID) {
 		this.defID = defID;

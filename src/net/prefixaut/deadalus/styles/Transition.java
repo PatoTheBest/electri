@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.prelib.PreLib;
-import net.prefixaut.prelib.SyncArrayList;
+import net.prefixaut.prelib.sync.SyncArrayList;
 
 public class Transition implements Style, Serializable {
 	

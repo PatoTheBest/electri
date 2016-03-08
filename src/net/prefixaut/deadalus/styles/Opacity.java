@@ -3,7 +3,7 @@ package net.prefixaut.deadalus.styles;
 import java.io.Serializable;
 
 import net.prefixaut.deadalus.css.Style;
-import net.prefixaut.prelib.util.Limited;
+import net.prefixaut.prelib.Limited;
 
 public class Opacity implements Style, Animatable<Opacity>, Serializable {
 	

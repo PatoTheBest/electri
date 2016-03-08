@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import net.prefixaut.deadalus.css.Style;
-import net.prefixaut.prelib.SyncArrayList;
+import net.prefixaut.prelib.sync.SyncArrayList;
 
 public class Keyframe implements Style, Serializable {
 	

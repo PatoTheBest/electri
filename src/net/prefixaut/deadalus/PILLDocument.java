@@ -7,7 +7,7 @@ import java.util.Map;
 import net.prefixaut.deadalus.util.FileLoader;
 import net.prefixaut.deadalus.util.ScriptLoader;
 import net.prefixaut.deadalus.util.StyleLoader;
-import net.prefixaut.prelib.xml.Document;
+import net.prefixaut.deadalus.xml.Document;
 
 public class PILLDocument implements Document<Component> {
 	

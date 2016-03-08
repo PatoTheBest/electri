@@ -1,7 +1,7 @@
 package net.prefixaut.deadalus.util;
 
 import net.prefixaut.deadalus.Component;
-import net.prefixaut.prelib.util.Filter;
+import net.prefixaut.prelib.Filter;
 
 /**
  * Extension of the {@link Filter} to remove the Generic so it can be used in Lambda-Code.

@@ -3,9 +3,9 @@ package net.prefixaut.deadalus;
 import net.prefixaut.deadalus.event.Event;
 import net.prefixaut.deadalus.event.Listener;
 import net.prefixaut.deadalus.styles.Opacity;
-import net.prefixaut.prelib.SyncArrayList;
-import net.prefixaut.prelib.SyncPairMap;
-import net.prefixaut.prelib.xml.Document;
+import net.prefixaut.deadalus.xml.Document;
+import net.prefixaut.prelib.sync.SyncArrayList;
+import net.prefixaut.prelib.sync.SyncPairMap;
 
 public class Window {
 	

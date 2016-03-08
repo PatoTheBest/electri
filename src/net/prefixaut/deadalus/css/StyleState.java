@@ -1,4 +1,4 @@
-package net.prefixaut.deadalus.util;
+package net.prefixaut.deadalus.css;
 
 import net.prefixaut.deadalus.Component;
 
