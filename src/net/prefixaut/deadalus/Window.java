@@ -1,28 +1,31 @@
 package net.prefixaut.deadalus;
 
-import net.prefixaut.deadalus.event.Event;
-import net.prefixaut.deadalus.event.Listener;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.prefixaut.deadalus.styles.Opacity;
-import net.prefixaut.deadalus.xml.Document;
-import net.prefixaut.prelib.sync.SyncArrayList;
-import net.prefixaut.prelib.sync.SyncPairMap;
+import net.prefixaut.deadalus.util.FileLoader;
+import net.prefixaut.deadalus.util.ScriptLoader;
+import net.prefixaut.deadalus.util.StyleLoader;
 
 public class Window {
 	
-	private SyncPairMap<Class<? extends Event>, SyncArrayList<Listener<?>>> events = new SyncPairMap<>();
 	/**
 	 * Document which Contains all Items/Data of the Window
 	 */
-	private Document<Component> document;
+	private PILLDocument document;
 	/**
 	 * Title of the Window - Will be displayed when the Border is enabled.
 	 */
 	private String title = "";
 	/**
-	 * Icon of the Window - Will be displayed when the Border is enabled.
-	 * Will also be shown on the Taskbar in the OS (if supported)
+	 * Icon of the Window - Will be displayed when the Border is enabled. Will also be shown on the Taskbar in the OS (if supported)
 	 */
 	private Image icon = null;
+	/**
+	 * Parent-Window of this Window. For example if this is a Pop-Up Window, the normal window would be it's parent.
+	 */
+	private Window parent = null;
 	/**
 	 * Determines if the System/OS-Border should be displayed on the Window.
 	 */
@@ -45,8 +48,7 @@ public class Window {
 	 */
 	private boolean closeable = true;
 	/**
-	 * Determines if the Window got closed.
-	 * Once a Window is closed, it cannot be opened again
+	 * Determines if the Window got closed. Once a Window is closed, it cannot be opened again
 	 */
 	private boolean closed = false;
 	/**
@@ -60,15 +62,11 @@ public class Window {
 	/**
 	 * Determines if the Window is in Full-Screen or not.
 	 */
-	private boolean inFullscreen = false;
+	private boolean fullscreen = false;
 	/**
 	 * Determines if the Window is always on top/cannot be overlapped by other Windows.
 	 */
 	private boolean alwaysOnTop = false;
-	/**
-	 * Parent-Window of this Window. For example if this is a Pop-Up Window, the normal window would be it's parent.
-	 */
-	private Window parent = null;
 	/**
 	 * Determines if the parent-Window is click/select-able or not when the window is shown. For example it can be used in a Pop-Up to prevent using the main Window without
 	 * finishing the Pop-Up.
@@ -94,13 +92,27 @@ public class Window {
 	 * Opacity-Level of the Window. Range: 0-100 (%)
 	 */
 	private Opacity opacity = new Opacity(100.0D);
+	/**
+	 * Variables of the Document which can be used to insert it somewhere dynamically
+	 */
+	private Map<String, Object> vars = new HashMap<>();
+	/**
+	 * File-Loaders which handle File loadings. Mapped by the lower-case name.
+	 */
+	private Map<String, FileLoader> loader = new HashMap<>();
+	/**
+	 * TypeLoaders which load/parse a File/String and append it as CSS-Block into the Document. Mapped by the lower-case type-name.
+	 */
+	private Map<String, StyleLoader> stylers = new HashMap<>();
+	/**
+	 * TypeLoaaders which load/parse a File/String and executes the Code. Mapped by the lower-case type-name.
+	 */
+	private Map<String, ScriptLoader> scripters = new HashMap<>();
 	
 	/**
 	 * Function to force the Window to close
 	 */
-	public void shutdown() {
-		
-	}
+	public void shutdown() {}
 	
 	public void close() {
 		if (this.closed || !this.closeable) return;
@@ -121,5 +133,60 @@ public class Window {
 		// TODO:
 	}
 	
+	public void fullscreen() {
+		if (this.fullscreen || !this.fullscreenable) return;
+		// TODO: 
+	}
 	
+	public boolean inFullscreen() {
+		return this.fullscreen;
+	}
+	
+	public Size x() {
+		return this.x;
+	}
+	
+	public void x(Size x) {
+		this.x = x;
+	}
+	
+	public Size y() {
+		return this.y;
+	}
+	
+	public void y(Size y) {
+		this.y = y;
+	}
+	
+	public Object variable(String name) {
+		return this.vars.get(name);
+	}
+	
+	public void variable(String name, Object obj) {
+		this.vars.put(name, obj);
+	}
+	
+	public FileLoader loader(String name) {
+		return this.loader.get(name);
+	}
+	
+	public void loader(String name, FileLoader loader) {
+		this.loader.put(name, loader);
+	}
+	
+	public StyleLoader styler(String name) {
+		return this.stylers.get(name);
+	}
+	
+	public void styler(String name, StyleLoader styler) {
+		this.stylers.put(name, styler);
+	}
+	
+	public ScriptLoader scripter(String name) {
+		return this.scripters.get(name);
+	}
+	
+	public void scripter(String name, ScriptLoader scripter) {
+		this.scripters.put(name, scripter);
+	}
 }
