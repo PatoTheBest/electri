@@ -3,17 +3,17 @@ package net.prefixaut.deadalus.css;
 public interface Style {
 	
 	/**
-	 * Gets the CSS-Value as String.
+	 * Gets Style-Value as it would be shown in a CSS-File.
 	 */
 	public String css();
 	
 	/**
-	 * @return Weather the Style is meant to be flagged as important or not.
+	 * @return Weather the Style is meant to be flagged to be important or not.
 	 */
 	public boolean important();
 	
 	/**
-	 * Flags the Style as important or not.
+	 * Flags the Style to be important or not.
 	 */
 	public void important(boolean important);
 }

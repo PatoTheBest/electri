@@ -1,5 +1,13 @@
 package net.prefixaut.deadalus;
 
+/**
+ * Enum to define every possible Key that can be used.
+ * Used for Events and direct user-input handling.
+ * 
+ * @since 1.0.0
+ * @author PreFiXAUT
+ * @version 1.0.0
+ */
 public enum Key {
 	/*
 	 * Alphabet

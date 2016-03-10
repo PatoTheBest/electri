@@ -12,15 +12,15 @@ public class MediaFeature<T extends Comparable<T>> {
 		this.value = value;
 	}
 	
-	public synchronized MediaSelectType getSelectType() {
+	public synchronized MediaSelectType selectType() {
 		return selectType;
 	}
 	
-	public synchronized void setSelectType(MediaSelectType selectType) {
+	public synchronized void selectType(MediaSelectType selectType) {
 		this.selectType = selectType;
 	}
 	
-	public synchronized MediaFeatureType<T> getType() {
+	public synchronized MediaFeatureType<T> type() {
 		return type;
 	}
 	

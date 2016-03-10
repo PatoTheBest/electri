@@ -60,7 +60,7 @@ public class CSS3 {
 	 * Final instances of basic SizeUnits.
 	 * 
 	 * @author PreFiXAUT
-	 *
+	 *		
 	 * @see SizeUnit
 	 */
 	public static class Units {
@@ -97,5 +97,4 @@ public class CSS3 {
 		public static final int LIGHTER = 300;
 		public static final int INITIAL = NORMAL;
 	}
-	
 }

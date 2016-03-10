@@ -18,6 +18,11 @@ public interface PlayableMedia extends Media {
 	 */
 	public void time(long time);
 	
+	/**
+	 * If the Media is currently running
+	 */
+	public boolean playing();
+	
 	// Control
 	/**
 	 * Attempts to play the Media
@@ -47,7 +52,4 @@ public interface PlayableMedia extends Media {
 		this.time(0);
 		return true;
 	}
-	
-	// Status
-	public boolean playing();
 }
