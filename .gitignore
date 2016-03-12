@@ -2,8 +2,6 @@
 /target/
 /.settings/
 
-/src/net/prefixaut/deadalus/event
-
 /.project
 /.classpath
 /.gitignore

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.prefixaut.deadalus.styles.Opacity;
+import net.prefixaut.deadalus.util.CSSLoader;
 import net.prefixaut.deadalus.util.FileLoader;
 import net.prefixaut.deadalus.util.ScriptLoader;
 import net.prefixaut.deadalus.util.StyleLoader;
@@ -92,22 +93,7 @@ public class Window {
 	 * Opacity-Level of the Window. Range: 0-100 (%)
 	 */
 	private Opacity opacity = new Opacity(100.0D);
-	/**
-	 * Variables of the Document which can be used to insert it somewhere dynamically
-	 */
-	private Map<String, Object> vars = new HashMap<>();
-	/**
-	 * File-Loaders which handle File loadings. Mapped by the lower-case name.
-	 */
-	private Map<String, FileLoader> loader = new HashMap<>();
-	/**
-	 * TypeLoaders which load/parse a File/String and append it as CSS-Block into the Document. Mapped by the lower-case type-name.
-	 */
-	private Map<String, StyleLoader> stylers = new HashMap<>();
-	/**
-	 * TypeLoaaders which load/parse a File/String and executes the Code. Mapped by the lower-case type-name.
-	 */
-	private Map<String, ScriptLoader> scripters = new HashMap<>();
+	private EventRegistry eventReg = new EventRegistry();
 	
 	/**
 	 * Function to force the Window to close
@@ -135,7 +121,7 @@ public class Window {
 	
 	public void fullscreen() {
 		if (this.fullscreen || !this.fullscreenable) return;
-		// TODO: 
+		// TODO:
 	}
 	
 	public boolean inFullscreen() {
@@ -158,35 +144,7 @@ public class Window {
 		this.y = y;
 	}
 	
-	public Object variable(String name) {
-		return this.vars.get(name);
-	}
-	
-	public void variable(String name, Object obj) {
-		this.vars.put(name, obj);
-	}
-	
-	public FileLoader loader(String name) {
-		return this.loader.get(name);
-	}
-	
-	public void loader(String name, FileLoader loader) {
-		this.loader.put(name, loader);
-	}
-	
-	public StyleLoader styler(String name) {
-		return this.stylers.get(name);
-	}
-	
-	public void styler(String name, StyleLoader styler) {
-		this.stylers.put(name, styler);
-	}
-	
-	public ScriptLoader scripter(String name) {
-		return this.scripters.get(name);
-	}
-	
-	public void scripter(String name, ScriptLoader scripter) {
-		this.scripters.put(name, scripter);
+	public EventRegistry eventRegistry() {
+		return this.eventReg;
 	}
 }

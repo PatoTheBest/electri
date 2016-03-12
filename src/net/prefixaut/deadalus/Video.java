@@ -1,7 +1,7 @@
 package net.prefixaut.deadalus;
 
 
-public interface Video extends Audio {
+public interface Video extends Audio, DisplayMedia {
 	
 	public Image frame(long frame);
 	

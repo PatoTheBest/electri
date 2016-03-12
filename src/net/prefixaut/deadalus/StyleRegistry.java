@@ -7,21 +7,14 @@ import java.util.regex.Pattern;
 import net.prefixaut.deadalus.css.Style;
 
 /**
- * Registry which keeps track of all Styles.
- * Styles are mapped with the Style-Name, so only one can exist.
- * The Registry is and should be used to access Styles in general,
- * for example in a custom Style-Parser.
+ * Registry which keeps track of all Styles. Styles are mapped with the Style-Name, so only one can exist. The Registry is and should be used to access Styles in general, for
+ * example in a custom Style-Parser.
  * 
  * @since 1.0.0
  * @author PreFiXAUT
  * @version 1.0.0
  */
 public class StyleRegistry {
-	
-	/**
-	 * Instance of this Registry so it can only exist once.
-	 */
-	private static StyleRegistry instance = new StyleRegistry();
 	
 	/**
 	 * The contents of the Registry.
@@ -31,21 +24,18 @@ public class StyleRegistry {
 	/**
 	 * Removing constructor to prevent multiple Registers.
 	 */
-	private StyleRegistry() {}
-	
-	/**
-	 * Getting the once instance of the Registry so you can work with it.
-	 */
-	public static StyleRegistry instance() {
-		return StyleRegistry.instance;
-	}
+	protected StyleRegistry() {}
 	
 	/**
 	 * Registers a new Style with it's name for global usage.
-	 * @param name Name of the Style. Has to match the following RegEx -> "[a-zA-Z+-_0-9]".
-	 * @param styleClass Class of the Style.
+	 * 
+	 * @param name
+	 *            Name of the Style. Has to match the following RegEx -> "[a-zA-Z+-_0-9]".
+	 * @param styleClass
+	 *            Class of the Style.
 	 * @return If the registering overwrote another Style or not.
-	 * @throws IllegalArgumentException When a Parameter is NULL or when the name is invalid.
+	 * @throws IllegalArgumentException
+	 *             When a Parameter is NULL or when the name is invalid.
 	 */
 	public boolean register(String name, Class<Style> styleClass) {
 		if (name == null) throw new IllegalArgumentException("NULL is an invalid name!");
@@ -58,7 +48,9 @@ public class StyleRegistry {
 	
 	/**
 	 * Attempts to unregister an Style from the Registry.
-	 * @param name Name of the Style you want to unregister.
+	 * 
+	 * @param name
+	 *            Name of the Style you want to unregister.
 	 * @return If the Style has been unregistered.
 	 */
 	public boolean unregister(String name) {
@@ -70,6 +62,7 @@ public class StyleRegistry {
 	
 	/**
 	 * Attempts to get a Style-Class from the given name.
+	 * 
 	 * @param name
 	 * @return
 	 */

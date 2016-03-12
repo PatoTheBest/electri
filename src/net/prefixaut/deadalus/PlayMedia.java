@@ -1,6 +1,6 @@
 package net.prefixaut.deadalus;
 
-public interface PlayableMedia extends Media {
+public interface PlayMedia {
 	
 	/**
 	 * Maximum/Actual Length of the Media in Milliseconds.

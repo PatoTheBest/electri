@@ -1,6 +1,6 @@
 package net.prefixaut.deadalus;
 
-public interface MediaPlayer<T extends PlayableMedia> {
+public interface MediaPlayer<T extends PlayMedia> {
 	
 	/**
 	 * Current time of the Media in Milliseconds.

@@ -1,6 +1,13 @@
 package net.prefixaut.deadalus;
 
-public interface Media {
+/**
+ * Defines a Display-able Media.
+ * 
+ * @since 1.0.0
+ * @author PreFiXAUT
+ * @version 1.0.0
+ */
+public interface DisplayMedia {
 	
 	public int width();
 	
