@@ -9,12 +9,12 @@ public class Percent implements RelativeSizeUnit {
 	public static Percent PERCENT = new Percent();
 	
 	@Override
-	public String getDefinition(double amount) {
+	public String definition(double amount) {
 		return amount + "%";
 	}
 	
 	@Override
-	public double getKey() {
+	public double key() {
 		return 1;
 	}
 	

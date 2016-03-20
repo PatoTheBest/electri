@@ -5,7 +5,7 @@ import net.prefixaut.deadalus.SizeUnit;
 public interface RelativeSizeUnit extends SizeUnit {
 	
 	@Override
-	public default boolean isRelative() {
+	public default boolean relative() {
 		return false;
 	}
 	

@@ -1,9 +1,11 @@
-package net.prefixaut.deadalus.event;
+package net.prefixaut.deadalus.event.window;
+
+import net.prefixaut.deadalus.event.Event;
 
 public class WindowResizeEvent implements Event {
 	
 	private int fromWidth, fromHeight, toWidth, toHeight;
-	private boolean canceled;
+	private boolean cancel;
 	
 	public WindowResizeEvent(int fromWidth, int fromHeight, int toWidth, int toHeight) {
 		this.fromWidth = fromWidth;
@@ -12,29 +14,29 @@ public class WindowResizeEvent implements Event {
 		this.toHeight = toHeight;
 	}
 	
-	public int getFromWidth() {
+	public int fromWidth() {
 		return fromWidth;
 	}
 	
-	public int getFromHeight() {
+	public int fromHeight() {
 		return fromHeight;
 	}
 	
-	public int getToWidth() {
+	public int toWidth() {
 		return toWidth;
 	}
 	
-	public int getToHeight() {
+	public int toHeight() {
 		return toHeight;
 	}
 	
 	@Override
 	public boolean cancelled() {
-		return this.canceled;
+		return this.cancel;
 	}
 	
 	@Override
-	public void cancelled(boolean canceled) {
-		this.canceled = canceled;
+	public void cancelled(boolean cancel) {
+		this.cancel = cancel;
 	}
 }

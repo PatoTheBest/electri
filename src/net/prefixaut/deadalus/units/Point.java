@@ -5,12 +5,12 @@ import net.prefixaut.deadalus.util.AbsoluteSizeUnit;
 public class Point implements AbsoluteSizeUnit {
 	
 	@Override
-	public String getDefinition(double amount) {
+	public String definition(double amount) {
 		return amount + "pt";
 	}
 	
 	@Override
-	public double getKey() {
+	public double key() {
 		return 96 / 72;
 	}
 }

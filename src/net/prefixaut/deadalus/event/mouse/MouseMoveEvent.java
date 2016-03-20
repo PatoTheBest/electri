@@ -1,4 +1,6 @@
-package net.prefixaut.deadalus.event;
+package net.prefixaut.deadalus.event.mouse;
+
+import net.prefixaut.deadalus.event.Event;
 
 public class MouseMoveEvent implements Event {
 	
@@ -12,19 +14,19 @@ public class MouseMoveEvent implements Event {
 		this.yTo = yTo;
 	}
 	
-	public int getxFrom() {
+	public int xFrom() {
 		return xFrom;
 	}
 	
-	public int getyFrom() {
+	public int yFrom() {
 		return yFrom;
 	}
 	
-	public int getxTo() {
+	public int xTo() {
 		return xTo;
 	}
 	
-	public int getyTo() {
+	public int yTo() {
 		return yTo;
 	}
 	
@@ -34,7 +36,7 @@ public class MouseMoveEvent implements Event {
 	}
 	
 	@Override
-	public void cancelled(boolean canceled) {
-		this.cancel = canceled;
+	public void cancelled(boolean cancel) {
+		this.cancel = cancel;
 	}
 }

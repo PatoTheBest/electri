@@ -1,9 +1,11 @@
-package net.prefixaut.deadalus.event;
+package net.prefixaut.deadalus.event.window;
+
+import net.prefixaut.deadalus.event.Event;
 
 public class WindowMoveEvent implements Event {
 	
 	private int xFrom, yFrom, xTo, yTo;
-	private boolean canceled;
+	private boolean cancel;
 	
 	public WindowMoveEvent(int xFrom, int yFrom, int xTo, int yTo) {
 		this.xFrom = xFrom;
@@ -12,29 +14,29 @@ public class WindowMoveEvent implements Event {
 		this.yTo = yTo;
 	}
 	
-	public int getXFrom() {
+	public int xFrom() {
 		return xFrom;
 	}
 	
-	public int getYFrom() {
+	public int yFrom() {
 		return yFrom;
 	}
 	
-	public int getXTo() {
+	public int xTo() {
 		return xTo;
 	}
 	
-	public int getYTo() {
+	public int yTo() {
 		return yTo;
 	}
 	
 	@Override
 	public boolean cancelled() {
-		return this.canceled;
+		return this.cancel;
 	}
 	
 	@Override
-	public void cancelled(boolean canceled) {
-		this.canceled = canceled;
+	public void cancelled(boolean cancel) {
+		this.cancel = cancel;
 	}
 }

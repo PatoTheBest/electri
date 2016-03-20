@@ -1,20 +1,19 @@
 package net.prefixaut.deadalus.layout;
 
-import net.prefixaut.deadalus.BasicComponent;
 import net.prefixaut.deadalus.Component;
 
-public class Slider extends BasicComponent {
+public class Slider extends Component {
 	
 	// TODO: Change it
 	private static final long serialVersionUID = 0;
 	
 	public Slider() {
-		super("sld");
+		super();
 		this.allowChildren = false;
 	}
 	
 	public Slider(Component parent) {
-		super("sld", parent);
+		super(parent);
 		this.allowChildren = false;
 	}
 }

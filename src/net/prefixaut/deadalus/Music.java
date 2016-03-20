@@ -16,4 +16,10 @@ public interface Music extends Audio {
 	
 	public Image albumCover();
 	public void albumCover(Image cover);
+	
+	public int bpm();
+	public void bmp(int bpm);
+	
+	public String genre();
+	public void genre(String genre);
 }

@@ -2,6 +2,7 @@ package net.prefixaut.deadalus;
 
 import java.io.Serializable;
 
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.deadalus.styles.Animatable;
 import net.prefixaut.deadalus.styles.Animation;
 import net.prefixaut.deadalus.styles.AnimationDirection;
@@ -12,10 +13,11 @@ import net.prefixaut.deadalus.util.CSS3.Units;
  * 
  * @author PreFiXAUT
  */
-public final class Size implements Comparable<Size>, Animatable<Size>, Serializable {
+public final class Size implements Style, Comparable<Size>, Animatable<Size>, Serializable {
 	
 	private static final long serialVersionUID = 0x1000200010000002L;
 	private byte defID = 0;
+	private boolean important = false;
 	private double size = 0.0D;
 	private SizeUnit unit = Units.PIXEL;
 	public static final Size AUTO = new Size((byte) 1);
@@ -85,7 +87,7 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 	
 	@Override
 	public String toString() {
-		return unit.getDefinition(size);
+		return unit.definition(size);
 	}
 	
 	@Override
@@ -126,7 +128,7 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 					} else {
 						timeout = an.timing().timing(an.fps(), an.duration(), (long) max - frame);
 					}
-					this.size(this.size() + (this.unit().getKey() * difS));
+					this.size(this.size() + (this.unit().key() * difS));
 					long end = System.currentTimeMillis();
 					try {
 						// Calculating buffer in case the frame took too long, so we reduce the next-frame duration the amount it was too much so they are even again.
@@ -140,7 +142,7 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 						e.printStackTrace();
 					}
 				}
-				this.size(this.unit().getKey() * to.unit().convertToPixel(to.size()));
+				this.size(this.unit().key() * to.unit().convertToPixel(to.size()));
 				try {
 					this.wait(an.delay());
 				} catch (InterruptedException e) {
@@ -148,5 +150,18 @@ public final class Size implements Comparable<Size>, Animatable<Size>, Serializa
 				}
 			}
 		};
+	}
+	
+	@Override
+	public String css() {
+		return this.size() + this.unit().toString();
+	}
+	@Override
+	public boolean important() {
+		return this.important;
+	}
+	@Override
+	public void important(boolean important) {
+		this.important = important;
 	}
 }

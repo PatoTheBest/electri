@@ -5,12 +5,12 @@ import net.prefixaut.deadalus.util.AbsoluteSizeUnit;
 public class Inch implements AbsoluteSizeUnit {
 	
 	@Override
-	public String getDefinition(double amount) {
+	public String definition(double amount) {
 		return amount + "in";
 	}
 	
 	@Override
-	public double getKey() {
+	public double key() {
 		return 96;
 	}
 }

@@ -1,20 +1,19 @@
 package net.prefixaut.deadalus.layout;
 
-import net.prefixaut.deadalus.BasicComponent;
 import net.prefixaut.deadalus.Component;
 
-public class Headline extends BasicComponent {
+public class Headline extends Component {
 	
 	// TODO: Change it
 	private static final long serialVersionUID = 0;
 	
 	public Headline() {
-		super("hdl");
+		super();
 		this.allowChildren = false;
 	}
 	
 	public Headline(Component parent) {
-		super("hdl", parent);
+		super(parent);
 		this.allowChildren = false;
 	}
 }

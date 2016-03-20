@@ -7,17 +7,17 @@ package net.prefixaut.deadalus;
  */
 public interface SizeUnit {
 	
-	public String getDefinition(double amount);
+	public String definition(double amount);
 	
-	public boolean isRelative();
+	public boolean relative();
 	
-	public double getKey();
+	public double key();
 	
 	public default double convertToPixel(Size amount) {
 		return this.convertToPixel(amount.size());
 	}
 	
 	public default double convertToPixel(double amount) {
-		return amount / this.getKey();
+		return amount / this.key();
 	}
 }

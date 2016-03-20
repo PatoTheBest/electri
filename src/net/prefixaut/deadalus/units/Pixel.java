@@ -5,12 +5,12 @@ import net.prefixaut.deadalus.util.AbsoluteSizeUnit;
 public final class Pixel implements AbsoluteSizeUnit {
 	
 	@Override
-	public String getDefinition(double amount) {
+	public String definition(double amount) {
 		return amount + "px";
 	}
 	
 	@Override
-	public double getKey() {
+	public double key() {
 		return 1;
 	}
 }

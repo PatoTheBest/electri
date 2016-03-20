@@ -4,5 +4,5 @@ public interface Event {
 	
 	public boolean cancelled();
 	
-	public void cancelled(boolean canceled);
+	public void cancelled(boolean cancel);
 }

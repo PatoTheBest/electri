@@ -4,11 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.prefixaut.deadalus.css.Style;
 import net.prefixaut.deadalus.css.StyleState;
+import net.prefixaut.deadalus.styles.Content;
+import net.prefixaut.deadalus.styles.Display;
+import net.prefixaut.deadalus.styles.Margin;
+import net.prefixaut.deadalus.styles.Opacity;
+import net.prefixaut.deadalus.styles.Padding;
+import net.prefixaut.deadalus.styles.Position;
+import net.prefixaut.deadalus.styles.Visibility;
+import net.prefixaut.deadalus.styles.ZIndex;
 import net.prefixaut.deadalus.util.CSS3;
 import net.prefixaut.deadalus.xml.Element;
 import net.prefixaut.prelib.Filter;
@@ -21,7 +31,7 @@ import net.prefixaut.prelib.sync.SyncPairMap;
  * Every Object which extends this Component requires one Constructor which takes a String as an ID for that Item.
  * 
  * @author PreFiXAUT
- *		
+ * 		
  */
 public abstract class Component implements Element<Component>, Serializable {
 	
@@ -61,19 +71,64 @@ public abstract class Component implements Element<Component>, Serializable {
 	 */
 	protected StyleState styleState = CSS3.States.NORMAL;
 	/**
-	 * Determines the (Min. & Max.) Width and Height of this Component.
+	 * Map which contains all Styles, mapped with their CSS-Names (Same as in the Style-Registry).
 	 */
-	protected Size width = Size.AUTO, height = Size.AUTO,
-			minWidth = Size.AUTO, minHeight = Size.AUTO,
-			maxWidth = Size.AUTO, maxHeight = Size.AUTO;
+	protected Map<String, Style> styles = new HashMap<>();
+	
+	public Component() {
+		this.styles.put("width", Size.AUTO);
+		this.styles.put("height", Size.AUTO);
+		this.styles.put("min-width", Size.AUTO);
+		this.styles.put("min-height", Size.AUTO);
+		this.styles.put("max-width", Size.AUTO);
+		this.styles.put("max-height", Size.AUTO);
+		this.styles.put("content", new Content() {
 			
-	public Component(String name) {
-		this.name = name;
-		this.attributes.put("class", new SyncArrayList<String>());
+			boolean important = false;
+			Object content = null;
+			
+			@Override
+			public String css() {
+				return this.content.toString();
+			}
+			
+			@Override
+			public boolean important() {
+				return this.important;
+			}
+			
+			@Override
+			public void important(boolean important) {
+				this.important = important;
+			}
+			
+			@Override
+			public Object content() {
+				return this.content;
+			}
+			
+			@Override
+			public void content(Object content) {
+				this.content = content;
+			}
+		});
+		this.styles.put("padding", new Padding());
+		this.styles.put("margin", new Margin());
+		this.styles.put("top", new Size(0));
+		this.styles.put("right", new Size(0));
+		this.styles.put("bottom", new Size(0));
+		this.styles.put("right", new Size(0));
+		this.styles.put("z-index", new ZIndex(0));
+		this.styles.put("position", Position.STATIC);
+		this.styles.put("visibility", Visibility.VISIBLE);
+		this.styles.put("display", Display.INLINE);
+		this.styles.put("opacity", new Opacity(100.0D));
+		// TODO: Set font
+		this.styles.put("font", null);
 	}
 	
-	public Component(String name, Component parent) {
-		this.name = name;
+	public Component(Component parent) {
+		this();
 		this.parent = parent;
 	}
 	
@@ -94,52 +149,12 @@ public abstract class Component implements Element<Component>, Serializable {
 		this.parent = parent;
 	}
 	
-	public final Size width() {
-		return this.width;
+	public Style style(String name) {
+		return this.styles.get(name);
 	}
 	
-	public final void width(Size width) {
-		this.width = width;
-	}
-	
-	public final Size height() {
-		return this.height;
-	}
-	
-	public final void height(Size height) {
-		this.height = height;
-	}
-	
-	public final Size maxWidth() {
-		return this.maxWidth;
-	}
-	
-	public final void maxWidth(Size maxWidth) {
-		this.maxWidth = maxWidth;
-	}
-	
-	public final Size maxHeight() {
-		return this.maxHeight;
-	}
-	
-	public final void maxHeight(Size maxHeight) {
-		this.maxHeight = maxHeight;
-	}
-	
-	public final Size minWidth() {
-		return this.minWidth;
-	}
-	
-	public final void minWidth(Size minWidth) {
-		this.minWidth = minWidth;
-	}
-	
-	public final Size minHeight() {
-		return this.minHeight;
-	}
-	
-	public final void minHeight(Size minHeight) {
-		this.minHeight = minHeight;
+	public boolean style(String name, Style style) {
+		return this.styles.put(name, style) != null;
 	}
 	
 	/**
@@ -169,9 +184,10 @@ public abstract class Component implements Element<Component>, Serializable {
 	 */
 	public final void addClass(Collection<String> cssClasses) {
 		if (cssClasses == null) throw new IllegalArgumentException("NULL is not a valid Parameter!");
-		List<String> t =  this.classes();
+		List<String> t = this.classes();
 		// Add new classes
-		for (String s : cssClasses) if (s != null) t.add(s);
+		for (String s : cssClasses)
+			if (s != null) t.add(s);
 		// Set it
 		this.attributes("class", t);
 	}
@@ -187,10 +203,12 @@ public abstract class Component implements Element<Component>, Serializable {
 			o = new ArrayList<String>();
 		} else if (o.getClass().isArray()) {
 			Object[] r = (Object[]) o;
-			for (int i=0;i<r.length;i++) if (r[i]!=null) t.add(r.toString());
+			for (int i = 0; i < r.length; i++)
+				if (r[i] != null) t.add(r.toString());
 		} else if (o instanceof List<?>) {
 			List<?> tmp = (List<?>) o;
-			for (Object obj : tmp) if (obj != null) t.add(obj.toString());
+			for (Object obj : tmp)
+				if (obj != null) t.add(obj.toString());
 		} else {
 			t.add(o.toString());
 		}
@@ -278,7 +296,7 @@ public abstract class Component implements Element<Component>, Serializable {
 	
 	public final boolean attributes(Map<String, Object> map) {
 		for (Entry<String, Object> e : map.entrySet()) {
-			this.attributes.put(e.getKey(), e.getValue());	
+			this.attributes.put(e.getKey(), e.getValue());
 		}
 		return true;
 	}

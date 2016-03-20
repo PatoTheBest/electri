@@ -33,7 +33,7 @@ public class StyleStateChangeEvent implements Event {
 	}
 	
 	@Override
-	public void cancelled(boolean canceled) {
-		this.cancel = canceled;
+	public void cancelled(boolean cancel) {
+		this.cancel = cancel;
 	}
 }

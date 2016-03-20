@@ -1,20 +1,19 @@
 package net.prefixaut.deadalus.layout;
 
-import net.prefixaut.deadalus.BasicComponent;
 import net.prefixaut.deadalus.Component;
 
-public class Application extends BasicComponent {
+public class Application extends Component {
 	
 	// TODO: Change it
 	private static final long serialVersionUID = 0;
 
 	public Application() {
-		super("app");
+		super();
 		this.allowChildren = false;
 	}
 	
 	public Application(Component parent) {
-		super("app", parent);
+		super(parent);
 		this.allowChildren = false;
 	}
 }

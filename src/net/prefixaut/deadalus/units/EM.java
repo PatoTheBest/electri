@@ -13,12 +13,12 @@ public final class EM implements RelativeSizeUnit {
 	}
 	
 	@Override
-	public String getDefinition(double amount) {
+	public String definition(double amount) {
 		return amount + "em";
 	}
 	
 	@Override
-	public double getKey() {
+	public double key() {
 		return relation;
 	}
 	

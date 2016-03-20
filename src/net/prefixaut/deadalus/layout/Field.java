@@ -1,20 +1,19 @@
 package net.prefixaut.deadalus.layout;
 
-import net.prefixaut.deadalus.BasicComponent;
 import net.prefixaut.deadalus.Component;
 
-public class Field<T> extends BasicComponent {
+public class Field<T> extends Component {
 	
 	// TODO: Change it
 	private static final long serialVersionUID = 0;
 	
 	public Field() {
-		super("fld");
+		super();
 		this.allowChildren = false;
 	}
 	
 	public Field(Component parent) {
-		super("fld", parent);
+		super(parent);
 		this.allowChildren = false;
 	}
 }

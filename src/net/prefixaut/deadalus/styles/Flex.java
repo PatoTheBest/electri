@@ -136,7 +136,7 @@ public class Flex implements Style, Animatable<Flex>, Serializable {
 					} else {
 						timeout = an.timing().timing(an.fps(), an.duration(), (long) max - frame);
 					}
-					this.basis(this.basis().unit().getKey() * (this.basis().asPixel() + difB));
+					this.basis(this.basis().unit().key() * (this.basis().asPixel() + difB));
 					this.shrink((int) (this.shrink() + difS));
 					this.grow((int) (this.grow() + difG));
 					long end = System.currentTimeMillis();

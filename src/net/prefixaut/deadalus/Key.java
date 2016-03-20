@@ -145,4 +145,9 @@ public enum Key {
 	public char getCharacter() {
 		return this.character;
 	}
+	
+	public static Key fromCharacter(char character) {
+		for (Key k : Key.values()) if (k.getCharacter() == character) return k;
+		return null;
+	}
 }

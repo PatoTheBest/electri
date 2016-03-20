@@ -5,12 +5,12 @@ import net.prefixaut.deadalus.util.AbsoluteSizeUnit;
 public class Picas implements AbsoluteSizeUnit {
 	
 	@Override
-	public String getDefinition(double amount) {
+	public String definition(double amount) {
 		return amount + "pc";
 	}
 	
 	@Override
-	public double getKey() {
+	public double key() {
 		return (96 / 72) * 12;
 	}
 }

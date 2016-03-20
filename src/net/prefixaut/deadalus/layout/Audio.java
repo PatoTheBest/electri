@@ -8,10 +8,10 @@ public class Audio extends Component {
 	private static final long serialVersionUID = 0;
 	
 	public Audio() {
-		super("ado");
+		super();
 	}
 	
 	public Audio(Component parent) {
-		super("ado", parent);
+		super(parent);
 	}
 }

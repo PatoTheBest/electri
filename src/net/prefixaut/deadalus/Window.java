@@ -1,13 +1,6 @@
 package net.prefixaut.deadalus;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.prefixaut.deadalus.styles.Opacity;
-import net.prefixaut.deadalus.util.CSSLoader;
-import net.prefixaut.deadalus.util.FileLoader;
-import net.prefixaut.deadalus.util.ScriptLoader;
-import net.prefixaut.deadalus.util.StyleLoader;
 
 public class Window {
 	
@@ -28,9 +21,15 @@ public class Window {
 	 */
 	private Window parent = null;
 	/**
+	 * Determines if the Window is locked.
+	 * When a Window is locked and User attempts to access/use the Window, nothing will happen.
+	 * There'll also be no Events for any (Direct) Inputs (Global Inputs still trigger).
+	 */
+	private boolean locked = false;
+	/**
 	 * Determines if the System/OS-Border should be displayed on the Window.
 	 */
-	private boolean displayBorder = true;
+	private boolean border = true;
 	/**
 	 * Determines if the Window can be minimized. If false, it will lock/disable the minimize-button on the System/OS-Border.
 	 */
@@ -69,11 +68,6 @@ public class Window {
 	 */
 	private boolean alwaysOnTop = false;
 	/**
-	 * Determines if the parent-Window is click/select-able or not when the window is shown. For example it can be used in a Pop-Up to prevent using the main Window without
-	 * finishing the Pop-Up.
-	 */
-	private boolean parentLocked = false;
-	/**
 	 * Determines if the Window is vertically resize-able.
 	 */
 	private boolean verticalResizeable = true;
@@ -84,11 +78,11 @@ public class Window {
 	/**
 	 * X and Y-Coordinate of the Window on the Screen. The Position is the very top-left corner/pixel of the Window.
 	 */
-	private Size x = new Size(0), y = new Size(0);
+	private int x = 0, y = 0;
 	/**
 	 * Width and Height of the Window on the Screen.
 	 */
-	private Size width = new Size(0), height = new Size(0);
+	private int width = 0, height = 0;
 	/**
 	 * Opacity-Level of the Window. Range: 0-100 (%)
 	 */
@@ -128,20 +122,76 @@ public class Window {
 		return this.fullscreen;
 	}
 	
-	public Size x() {
+	public String title() {
+		return this.title;
+	}
+	
+	public Image icon() {
+		return this.icon;
+	}
+	
+	public Window parent() {
+		return this.parent;
+	}
+	
+	public void parent(Window parent) {
+		this.parent = parent;
+	}
+	
+	public boolean locked() {
+		return this.locked;
+	}
+	
+	public void locked(boolean locked) {
+		this.locked = locked;
+	}
+	
+	public boolean border() {
+		return this.border;
+	}
+	
+	public void border(boolean border) {
+		this.border = border;
+	}
+	
+	public void icon(Image icon) {
+		this.icon = icon;
+	}
+	
+	public void title(String title) {
+		this.title = title;
+	}
+	
+	public int x() {
 		return this.x;
 	}
 	
-	public void x(Size x) {
+	public void x(int x) {
 		this.x = x;
 	}
 	
-	public Size y() {
+	public int y() {
 		return this.y;
 	}
 	
-	public void y(Size y) {
+	public void y(int y) {
 		this.y = y;
+	}
+	
+	public int width() {
+		return this.width;
+	}
+	
+	public void width(int width) {
+		this.width = width;
+	}
+	
+	public int height() {
+		return this.height;
+	}
+	
+	public void height(int height) {
+		this.height = height;
 	}
 	
 	public EventRegistry eventRegistry() {

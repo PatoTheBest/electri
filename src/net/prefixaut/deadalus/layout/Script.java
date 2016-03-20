@@ -8,12 +8,12 @@ public class Script extends Component {
 	private static final long serialVersionUID = 0;
 	
 	public Script() {
-		super("script");
+		super();
 		this.allowChildren = false;
 	}
 	
 	public Script(Component parent) {
-		super("script", parent);
+		super(parent);
 		this.allowChildren = false;
 	}
 }
