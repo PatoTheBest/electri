@@ -24,5 +24,6 @@ The linked Board contains plans, stuff I'm currently working on and all sorts of
 
 ## License
 This Projects Source-Code is published under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+![ASF Logo](https://www.apache.org/foundation/press/kit/asf_logo.svg)
 
 Everything else that this Project contains is published under the [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/) if it isn't specified as what else it's beeing published.
